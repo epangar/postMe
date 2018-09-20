@@ -3,13 +3,27 @@ const Schema = mongoose.Schema;
 
 const ticketSchema = new Schema(
   {
-    about: String,
-    description: String,
-    role: {
-      type: String,
-      enum: ["minion", "admin"],
-      default: "minion"
+    about: {
+        type: String,
+        required: [true, "Add a motive"]
+      },
+    description: {
+        type: String,
+        required: [true, "Add a description"]
+      },
+    number: Number,
+    openBy: { 
+        type: Schema.Types.ObjectId, ref: "User" 
+      },
+    open: {
+            type: Boolean,
+            default: true,
     },
+    status : {
+        type: String,
+        enum: ["CLOSED", "OPEN"],
+        default: "OPEN"
+      },
   },
   {
     timestamps: {
