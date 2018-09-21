@@ -15,6 +15,10 @@ const ticketSchema = new Schema(
     openBy: { 
         type: Schema.Types.ObjectId, ref: "User" 
       },
+    assigendTo: { 
+        type: Schema.Types.ObjectId, ref: "User" 
+      },
+    
     open: {
             type: Boolean,
             default: true,
