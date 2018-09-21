@@ -53,7 +53,7 @@ app.locals.title = 'postMe: smartly manage your tickets';
 
 const index = require('./routes/index');
 app.use('/', index);
-app.use("/login", auth);
+//app.use("/login", auth);
 
 
 module.exports = app;
