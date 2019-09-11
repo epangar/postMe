@@ -1,6 +1,15 @@
-<form class="access__form">
-    <p>Username:<input></p>
-    <p>Password:<input></p>
-    
-    <button>Access</button>
-</form>
+<div class="access">
+    <div class="row ">
+        <div class="offset-3"></div>
+        <form class="access__form col-md-6" *ngIf="accessIsClicked===false">
+            <p>Username:<input></p>
+            <p>Password:<input></p>
+            
+            <button (click)="clickAccess()" type="button">Access</button>
+        </form>
+        <div class="offset-3"></div>
+    </div>
+</div>
+
+
+<manageusers *ngIf="accessIsClicked===true"></manageusers>

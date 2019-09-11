@@ -12,4 +12,11 @@ export class AccessComponent implements OnInit {
   ngOnInit() {
   }
 
+  accessIsClicked=false;
+
+
+  clickAccess(){
+    this.accessIsClicked=!this.accessIsClicked;
+  }
+
 }

@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ManageusersComponent } from './components/manageusers/manageusers.component';
 import { AccessComponent } from './components/access/access.component';
+import { TicketmanagementComponent } from './components/ticketmanagement/ticketmanagement.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ManageusersComponent,
-    AccessComponent
+    AccessComponent,
+    TicketmanagementComponent
   ],
   imports: [
     BrowserModule,

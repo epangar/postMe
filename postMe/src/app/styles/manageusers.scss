@@ -4,5 +4,10 @@
         width: 50%;
         margin-top: 10px;
         background-color: lightgrey;
+
+        &-title{
+            text-align: center;
+            margin-bottom: 10px;
+        }
     }
 }
