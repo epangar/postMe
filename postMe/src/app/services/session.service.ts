@@ -33,16 +33,16 @@ export class SessionService {
 
   signup(user) {
     return this.http.post(`${environment.BASEURL}/api/auth/signup`, user, this.options)
-      .map(res => res.json())
-      .map(user => this.handleUser(user))
-      .catch(this.handleError);
+      .pipe(map(response =>response))
+     pipe .(map(user => this.handleUser)(user))
+    //  .catch(this.handleError);
   }
 
   login(username, password) {
     return this.http.post(`${environment.BASEURL}/api/auth/login`, {username,password}, this.options)
-      .map(res => res.json())
-      .map(user => this.handleUser(user))
-      .catch(this.handleError);
+      .pipe(map(response =>response))
+     pipe .(map(user => this.handleUser)(user))
+    //  .catch(this.handleError);
   }
 
   logout() {
@@ -56,9 +56,9 @@ export class SessionService {
   isLoggedIn() {
     return this.http.get(`${environment.BASEURL}/api/auth/loggedin`, this.options)
     .pipe(map(res=>res.json()))
-      .map(res => res.json())
-      .map(user => this.handleUser(user))
-      .catch(this.handleError);
+      .pipe(map(response =>response))
+     pipe .(map(user => this.handleUser)(user))
+    //  .catch(this.handleError);
   }
 
   getItems() {
@@ -124,9 +124,34 @@ export class SessionService {
 
   signup(username:string, password:string):Observable<any>{
     return this.http.post(`${this.BASEURL}/api/auth/signup`, {username,password}, this.options)
-      .map(res => res.json())
-      .map(this.configureUser(true))
-      .catch(this.handleError);
+      .pipe(map(response =>response))
+      .pipe(map(this.configureUser(true)))
+      //.catch(this.handleError);
+  }
+
+  login(username:string, password:string):Observable<any>{
+    return this.http.post(`${this.BASEURL}/api/auth/login`, {username,password},this.options)
+      .pipe(map(response =>response))
+      .pipe(map(this.configureUser(true)))
+      //.catch(this.handleError);
+  }
+
+  logout():Observable<any>{
+    return this.http.get(`${this.BASEURL}/api/auth/logout`,this.options)
+      .pipe(map(response =>response))
+      .pipe(map(this.configureUser(false)))
+      //.catch(this.handleError);
+  }
+  
+  LOGOUT(){
+    this.http.get(`${this.BASEURL}/api/auth/logout`,this.options)
+    .pipe(map(response =>response))
+    .pipe(map(this.configureUser(false)))
+    //.catch((e: any) => Observable.throw(this.errorHandler(e)));
+  }
+
+  errorHandler(error: any): void {
+    console.log(error)
   }
 
   /*getItems() {
@@ -134,25 +159,11 @@ export class SessionService {
       console.log(result);
     });
   } */
-
-  login(username:string, password:string):Observable<any>{
-    return this.http.post(`${this.BASEURL}/api/auth/login`, {username,password},this.options)
-      .map(res => res.json())
-      .map(this.configureUser(true))
-      .catch(this.handleError);
-  }
-
-  logout():Observable<any>{
-    return this.http.get(`${this.BASEURL}/api/auth/logout`,this.options)
-      .map(res => res.json())
-      .map(this.configureUser(false))
-      .catch(this.handleError);
-  }
-
+  
   isLoggedIn():Observable<any> {
     return this.http.get(`${this.BASEURL}/api/auth/loggedin`,this.options)
-      .map(res => res.json())
-      .map(this.configureUser(true))
-      .catch(this.handleError);
+      .pipe(map(response =>response))
+      .pipe(map(this.configureUser(true)))
+      //.catch(this.handleError);
   }
 }
