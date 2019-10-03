@@ -9,7 +9,7 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
-//DBURL='mongodb://localhost/later'
+
 mongoose
   .connect('mongodb://localhost/backend', {useNewUrlParser: true})
   .then(x => {

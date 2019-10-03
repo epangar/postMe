@@ -15,6 +15,10 @@ import { CreateUsersComponent } from './components/create-users/create-users.com
 import { CreateTicketsComponent } from './components/create-tickets/create-tickets.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 
+
+//Services
+import { SessionService } from './services/session.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +35,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [SessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
