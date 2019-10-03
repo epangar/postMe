@@ -5,7 +5,9 @@
     <p> New user <button type="button"
                         (click)="displayCreateUsers()">+</button></p>
 
-    <create-users *ngIf="createUsers===true"></create-users>
+    <create-users *ngIf="createUsers===true"
+                    
+                    (isFormOpen)="receiveCloseForm($event)"></create-users>
 
     
 </form>

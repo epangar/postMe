@@ -18,11 +18,10 @@
   &__footer{
     color: #fff;
     background-color: #5F9EA0;
+    padding: 1%;
   }
 
   &__screen{
-    min-height: 530px;
-    max-height: 1000px;
-    // border: 1px solid green;
+    height: 100%;
   }
 }

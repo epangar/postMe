@@ -1,11 +1,11 @@
 <div class="access">
     <div class="row--corrected">
-        <div class="offset-3"></div>
-        <form class="access__form col-md-6" *ngIf="accessIsClicked===false">
+        <form class="access__form offset-md-3 col-md-6" *ngIf="accessIsClicked===false">
             <p>Username:<input></p>
             <p>Password:<input></p>
 
-            <button (click)="clickAccess()" type="button">Access</button>
+            <button  type="button">Sign Up</button>
+            <button (click)="clickAccess()" type="button">Login</button>
         </form>
         <div class="offset-3"></div>
     </div>

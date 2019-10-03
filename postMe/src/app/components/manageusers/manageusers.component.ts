@@ -17,4 +17,10 @@ export class ManageusersComponent implements OnInit {
   displayCreateUsers(){
     this.createUsers=!this.createUsers;
   }
+
+  receiveCloseForm(input: boolean):void{
+    debugger
+    console.log(input);
+    this.createUsers=input;
+  }
 }

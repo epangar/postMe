@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
 
 @Component({
   selector: 'create-users',
@@ -6,10 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['../../styles/create-users.scss']
 })
 export class CreateUsersComponent implements OnInit {
+  
+  isFormOpen: boolean;
+  
+
+  @Output()  collapseFormEmit : EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
 
   ngOnInit() {
+    this.isFormOpen = true;
   }
 
+  collapse(){
+    
+    this.isFormOpen = !this.isFormOpen;
+    this.collapseFormEmit.emit(this.isFormOpen);
+  }
 }
