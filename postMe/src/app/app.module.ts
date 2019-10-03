@@ -13,6 +13,7 @@ import { DisplayUsersComponent } from './components/display-users/display-users.
 import { DisplayTicketsComponent } from './components/display-tickets/display-tickets.component';
 import { CreateUsersComponent } from './components/create-users/create-users.component';
 import { CreateTicketsComponent } from './components/create-tickets/create-tickets.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CreateTicketsComponent } from './components/create-tickets/create-ticke
     DisplayUsersComponent,
     DisplayTicketsComponent,
     CreateUsersComponent,
-    CreateTicketsComponent
+    CreateTicketsComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

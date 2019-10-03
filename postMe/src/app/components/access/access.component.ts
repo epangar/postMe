@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AccessComponent implements OnInit {
 
   accessIsClicked: boolean=false;
-  // manageUsers: boolean = true;
+  signUpIsSelected: boolean=false;
   currentlyManaging: string = "users";
   currentlyNotManaging: string = "tickets";
   
@@ -36,5 +36,9 @@ export class AccessComponent implements OnInit {
       this.currentlyNotManaging = "tickets";
       this.currentlyManaging = "users";
     }
+  }
+
+  showSignUp(){
+    this.signUpIsSelected=!this.signUpIsSelected;
   }
 }

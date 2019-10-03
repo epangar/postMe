@@ -4,11 +4,13 @@
             <p>Username:<input></p>
             <p>Password:<input></p>
 
-            <button  type="button">Sign Up</button>
+            <button (click)="showSignUp()" type="button">Sign Up</button>
             <button (click)="clickAccess()" type="button">Login</button>
         </form>
         <div class="offset-3"></div>
     </div>
+
+    <sign-up *ngIf="signUpIsSelected"></sign-up>
 </div>
 
 

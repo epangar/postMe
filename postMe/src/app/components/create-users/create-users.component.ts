@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input  } from '@angular/core';
 
 @Component({
   selector: 'create-users',
@@ -9,7 +9,7 @@ export class CreateUsersComponent implements OnInit {
   
   isFormOpen: boolean;
   
-
+   
   @Output()  collapseFormEmit : EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
