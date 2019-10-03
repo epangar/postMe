@@ -1,81 +1,7 @@
-/*import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient, HttpResponse } from "@angular/common/http";
-import { map } from 'rxjs/operators';
-import { catch } from 'rxjs/operators';
-import 'rxjs/add/operator/map'
-import 'rxjs/Rx';
-
-import 'rxjs/add/operator/catch';
-import { Observable, of } from 'rxjs';
-import { environment } from '../../environments/environment';
-
-@Injectable()
-export class SessionService {
-
-  user:any;
-  entries: Array<any> =[];
-  userEvent: EventEmitter<any> = new EventEmitter();
-  options: any = { withCredentials:true };
-
-  constructor(private http: HttpClient) {
-    this.isLoggedIn().subscribe();
-  }
-
-  handleError(e) {
-    return Observable.throw(e.json().message);
-  }
-
-  handleUser(user?:object){
-    this.user = user;
-    this.userEvent.emit(this.user);
-    return this.user;
-  }
-
-  signup(user) {
-    return this.http.post(`${environment.BASEURL}/api/auth/signup`, user, this.options)
-      .pipe(map(response =>response))
-     pipe .(map(user => this.handleUser)(user))
-    //  .catch(this.handleError);
-  }
-
-  login(username, password) {
-    return this.http.post(`${environment.BASEURL}/api/auth/login`, {username,password}, this.options)
-      .pipe(map(response =>response))
-     pipe .(map(user => this.handleUser)(user))
-    //  .catch(this.handleError);
-  }
-
-  logout() {
-    return this.http.get(`${environment.BASEURL}/api/auth/logout`,this.options)
-      .pipe(map(() => {
-        this.handleUser()
-      }))
-      .catch(this.handleError);
-  }
-
-  isLoggedIn() {
-    return this.http.get(`${environment.BASEURL}/api/auth/loggedin`, this.options)
-    .pipe(map(res=>res.json()))
-      .pipe(map(response =>response))
-     pipe .(map(user => this.handleUser)(user))
-    //  .catch(this.handleError);
-  }
-
-  getItems() {
-    this.http.get('https://example.com/api/items').pipe(map(data => {})).subscribe(result => {
-      console.log(result);
-    });
-  } 
-
-} */
-
-
-
-
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Observable, Subject } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { map, catchError, take } from 'rxjs/operators';
 
 interface User {
   username:string,
@@ -87,6 +13,7 @@ export class SessionService {
 
   BASEURL:string = "http://localhost:3000"
   options:object = {withCredentials:true};
+  
   constructor(private http: HttpClient) {
     this.isLoggedIn().subscribe();
   }
@@ -126,44 +53,36 @@ export class SessionService {
     return this.http.post(`${this.BASEURL}/api/auth/signup`, {username,password}, this.options)
       .pipe(map(response =>response))
       .pipe(map(this.configureUser(true)))
-      //.catch(this.handleError);
+      catchError((e: any) => Observable.throw(this.handleError(e)));
   }
 
   login(username:string, password:string):Observable<any>{
     return this.http.post(`${this.BASEURL}/api/auth/login`, {username,password},this.options)
       .pipe(map(response =>response))
       .pipe(map(this.configureUser(true)))
-      //.catch(this.handleError);
+      catchError((e: any) => Observable.throw(this.handleError(e)));
   }
 
-  logout():Observable<any>{
+/*   logout():Observable<any>{
     return this.http.get(`${this.BASEURL}/api/auth/logout`,this.options)
       .pipe(map(response =>response))
       .pipe(map(this.configureUser(false)))
-      //.catch(this.handleError);
+      catchError((e: any) => Observable.throw(this.handleError(e)));
   }
-  
-  LOGOUT(){
+ */  
+  logOut(){
     this.http.get(`${this.BASEURL}/api/auth/logout`,this.options)
     .pipe(map(response =>response))
     .pipe(map(this.configureUser(false)))
-    //.catch((e: any) => Observable.throw(this.errorHandler(e)));
+    catchError((e: any) => Observable.throw(this.handleError(e)));
   }
 
-  errorHandler(error: any): void {
-    console.log(error)
-  }
 
-  /*getItems() {
-    this.http.get('https://example.com/api/items').pipe(map(data => {})).subscribe(result => {
-      console.log(result);
-    });
-  } */
   
   isLoggedIn():Observable<any> {
     return this.http.get(`${this.BASEURL}/api/auth/loggedin`,this.options)
       .pipe(map(response =>response))
       .pipe(map(this.configureUser(true)))
-      //.catch(this.handleError);
+      catchError((e: any) => Observable.throw(this.handleError(e)));
   }
 }
