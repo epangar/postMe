@@ -2,7 +2,10 @@
 <form class="manage-users__form">
     <strong class="manage-users__form-title"><p>User Management</p></strong>
     <p> Search user <input></p>
-    <p> New user <button>+</button></p>
+    <p> New user <button type="button"
+                        (click)="displayCreateUsers()">+</button></p>
+
+    <create-users *ngIf="createUsers===true"></create-users>
 
     
 </form>

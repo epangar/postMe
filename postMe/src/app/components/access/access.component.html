@@ -1,10 +1,10 @@
 <div class="access">
-    <div class="row ">
+    <div class="row--corrected">
         <div class="offset-3"></div>
         <form class="access__form col-md-6" *ngIf="accessIsClicked===false">
             <p>Username:<input></p>
             <p>Password:<input></p>
-            
+
             <button (click)="clickAccess()" type="button">Access</button>
         </form>
         <div class="offset-3"></div>
@@ -12,20 +12,33 @@
 </div>
 
 
-<div class="row" *ngIf="accessIsClicked===true">
-    <div class="managers col-md-6">
-        <manageusers *ngIf="accessIsClicked===true"
-                    class="col-md-12"></manageusers>
-        <managetickets *ngIf="accessIsClicked===true"
-                    class="col-md-12"></managetickets>
+<div  *ngIf="accessIsClicked===true">
+
+
+
+    <div class="row--corrected">
+        <label class="col-md-12"> Managing {{ currentlyManaging }}
+            <button (click)="clickUsers()">Manage {{ currentlyNotManaging }} </button>
+        </label>
     </div>
+
+
+    <div class="row--corrected">
+        <div class="access__managers col-md-6">
+            <manageusers *ngIf="accessIsClicked===true && currentlyManaging==='users'" 
+                        class="manage-users"></manageusers>
+            <managetickets *ngIf="accessIsClicked===true && currentlyManaging==='tickets'" 
+                        class="manage-tickets"></managetickets>
+        </div>
     
-    <div class="displayers col-md-6">
-        <div>
-            Users
-        </div>
-        <div>
-            Tickets
+        <div class="access__displayer col-md-6">
+            <div>
+                <display-users></display-users>
+            </div>
+            <div>
+                <display-tickets></display-tickets>
+            </div>
         </div>
     </div>
+
 </div>

@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TicketmanagementComponent implements OnInit {
 
+  createTickets: boolean;
   constructor() { }
 
   ngOnInit() {
+    this.createTickets=false;
   }
 
+  displayCreateTickets(){
+    this.createTickets=!this.createTickets;
+  }
 }

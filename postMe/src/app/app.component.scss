@@ -4,15 +4,25 @@
     background-color: #5f9ea0;
     height: 45px;
     color: white;
+    display: flex;
+    width: 100%;
+    margin-right: 0px;
+    margin-left: 0px;
+
+    &__logout{
+      margin: 0 auto;
+      padding: 1%;
+    }
   }
 
   &__footer{
-    border: 1px solid orange;
+    color: #fff;
+    background-color: #5F9EA0;
   }
 
   &__screen{
     min-height: 530px;
     max-height: 1000px;
-    border: 1px solid green;
+    // border: 1px solid green;
   }
 }

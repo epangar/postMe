@@ -8,3 +8,19 @@
 @import "./app/styles/display-users";
 @import "./app/styles/manageusers.scss";
 @import "./app/styles/ticketmanagement.scss";
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.width100{
+    width: 100% !important;
+}
+
+.row--corrected {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: 0px;
+        margin-left: 0px;
+    }

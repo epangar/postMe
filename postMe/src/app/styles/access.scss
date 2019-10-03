@@ -1,8 +1,21 @@
 .access{
     background-color: lightgray;
+    
+
+    &__displayer{
+        border: 1px solid red;
+    }
+    
     &__form {
         width: 40%;
         margin-top: 10px;
         background-color: lightgray;
     }
+
+    &__managers{
+        border: 1px solid blueviolet;
+        background-color: #D3D3D3;
+    }
+
+    
 }

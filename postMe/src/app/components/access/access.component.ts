@@ -7,16 +7,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccessComponent implements OnInit {
 
+  accessIsClicked: boolean=false;
+  // manageUsers: boolean = true;
+  currentlyManaging: string = "users";
+  currentlyNotManaging: string = "tickets";
+  
+
   constructor() { }
 
   ngOnInit() {
+
   }
 
-  accessIsClicked=false;
 
 
   clickAccess(){
     this.accessIsClicked=!this.accessIsClicked;
   }
 
+  clickUsers(){
+    // this.manageUsers=!this.manageUsers;
+    
+    if(this.currentlyManaging === "users"){
+      this.currentlyManaging = "tickets";
+      this.currentlyNotManaging = "users";
+
+    } else {
+      this.currentlyNotManaging = "tickets";
+      this.currentlyManaging = "users";
+    }
+  }
 }

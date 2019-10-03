@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageusersComponent implements OnInit {
 
+  createUsers: boolean;
   constructor() { }
 
   ngOnInit() {
+    this.createUsers=false;
   }
 
+  displayCreateUsers(){
+    this.createUsers=!this.createUsers;
+  }
 }

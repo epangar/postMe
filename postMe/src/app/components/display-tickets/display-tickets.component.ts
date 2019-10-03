@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-display-tickets',
+  selector: 'display-tickets',
   templateUrl: './display-tickets.component.html',
   styleUrls: ['../../styles/display-tickets.scss']
 })
