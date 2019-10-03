@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style file*/
 
-@import "./app/app.component.scss";
+@import "./app/app.component";
 @import "./app/styles/access";
-@import "./app/styles/manageusers";
+@import "./app/styles/create-tickets";
+@import "./app/styles/create-users";
+@import "./app/styles/display-tickets";
+@import "./app/styles/display-users";
+@import "./app/styles/manageusers.scss";
+@import "./app/styles/ticketmanagement.scss";

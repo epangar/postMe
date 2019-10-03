@@ -1,0 +1,13 @@
+.manage-tickets{
+
+    &__form {
+        width: 100%;
+        margin-top: 10px;
+        background-color: lightgrey;
+
+        &-title{
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    }
+}

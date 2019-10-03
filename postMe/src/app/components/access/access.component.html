@@ -12,4 +12,20 @@
 </div>
 
 
-<manageusers *ngIf="accessIsClicked===true"></manageusers>
+<div class="row" *ngIf="accessIsClicked===true">
+    <div class="managers col-md-6">
+        <manageusers *ngIf="accessIsClicked===true"
+                    class="col-md-12"></manageusers>
+        <managetickets *ngIf="accessIsClicked===true"
+                    class="col-md-12"></managetickets>
+    </div>
+    
+    <div class="displayers col-md-6">
+        <div>
+            Users
+        </div>
+        <div>
+            Tickets
+        </div>
+    </div>
+</div>
