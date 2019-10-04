@@ -17,9 +17,9 @@
             <td class="col-lg-1"> <button (click)="showUserData(i)">Show</button></td>
             <div class="col-lg-12" *ngIf="whoIsDisplayed !== -1 && whoIsDisplayed === i">
 
-                <p><b>Position:</b> {{listOfUsers[i].typeOfUser }}, {{listOfUsers[i].business}}</p>
-                <p><b>Location:</b> {{listOfUsers[i].city }}, {{listOfUsers[i].country}}</p>
-                <p><b>Phone: </b> {{listOfUsers[i].phoneNumber}}</p>
+                <p><b>Position:</b> {{user.role }}, {{user.business}}</p>
+                <p><b>Location:</b> {{user.city }}, {{user.country}}</p>
+                <p><b>Phone: </b> {{user.phoneNumber}}  <b>Email:</b> {{user.email}} </p>
                 <button>Create ticket</button>
                 <button>See all tickets</button>
 

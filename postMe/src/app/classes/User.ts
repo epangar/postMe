@@ -2,6 +2,7 @@ import { Ticket } from './Ticket'
 
 export class User{
     id: string;
+    username: string;
     userNumber: string;
     name: string;
     surname: string;
@@ -10,8 +11,8 @@ export class User{
     country: string;
     job: string;
     phoneNumber: string;
-    typeOfUser: string;
-    // email: string;
+    role: string;
+    email: string;
     // tickets: Ticket[];
 
     constructor(){
