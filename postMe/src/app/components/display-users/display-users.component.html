@@ -4,8 +4,8 @@
             <th class="col-lg-2">User Number</th>
             <th class="col-lg-3">Name</th>
             <th class="col-lg-3">Surname</th>
-            <th class="col-lg-3">Business</th>
-            <th class="col-lg-1">Show data</th>
+            <th class="col-lg-2">Business</th>
+            <th class="col-lg-2">Show data</th>
         </tr>
     </thead>
     <tbody>
@@ -13,8 +13,8 @@
             <td class="col-lg-2">{{user.userNumber}}</td>
             <td class="col-lg-3">{{user.name}}</td>
             <td class="col-lg-3">{{user.surname}}</td>
-            <td class="col-lg-3">{{user.business}}</td>
-            <td class="col-lg-1"> <button (click)="showUserData(i)">Show</button></td>
+            <td class="col-lg-2">{{user.business}}</td>
+            <td class="col-lg-2"> <button (click)="showUserData(i)">Show</button></td>
             <div class="col-lg-12" *ngIf="whoIsDisplayed !== -1 && whoIsDisplayed === i">
 
                 <p><b>Position:</b> {{user.role }}, {{user.business}}</p>
@@ -22,6 +22,7 @@
                 <p><b>Phone: </b> {{user.phoneNumber}}  <b>Email:</b> {{user.email}} </p>
                 <button>Create ticket</button>
                 <button>See all tickets</button>
+                <button>Edit</button>
 
             </div>
         </tr>

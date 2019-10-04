@@ -27,8 +27,12 @@ export class DisplayUsersComponent implements OnInit {
   }
 
   showUserData(i: number){
+    if(this.whoIsDisplayed !==-1 ){
+      this.whoIsDisplayed = -1;
+    } else {
+      this.whoIsDisplayed = i;
+    }
     
-    this.whoIsDisplayed = i;
     
   }
   
