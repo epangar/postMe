@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageusersComponent implements OnInit {
 
+  sentOpenComponent: boolean;
   createUsers: boolean;
   constructor() { }
 
@@ -16,10 +17,10 @@ export class ManageusersComponent implements OnInit {
 
   displayCreateUsers(){
     this.createUsers=!this.createUsers;
+    this.sentOpenComponent=true;
   }
 
   receiveCloseForm(input: boolean):void{
-    debugger
     console.log(input);
     this.createUsers=input;
   }

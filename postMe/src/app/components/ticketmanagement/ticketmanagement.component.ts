@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TicketmanagementComponent implements OnInit {
 
+  sentOpenComponent: boolean;
   createTickets: boolean;
   constructor() { }
 
@@ -16,5 +17,11 @@ export class TicketmanagementComponent implements OnInit {
 
   displayCreateTickets(){
     this.createTickets=!this.createTickets;
+    this.sentOpenComponent=true;
+  }
+
+  receiveCloseForm(input: boolean):void{
+    console.log(input);
+    this.createTickets=input;
   }
 }

@@ -8,19 +8,31 @@ import { Component, OnInit, Output, EventEmitter, Input  } from '@angular/core';
 export class CreateUsersComponent implements OnInit {
   
   isFormOpen: boolean;
+
+  @Input() 
   
+  set receivedOpenComponent(sentOpenComponent :boolean ){
+    
+    this.isFormOpen=sentOpenComponent;
+  }
+
+  get receivedOpenComponent(){
+    return this.isFormOpen;
+  }
+
+
    
   @Output()  collapseFormEmit : EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
 
   ngOnInit() {
-    this.isFormOpen = true;
+    
   }
 
   collapse(){
-    
     this.isFormOpen = !this.isFormOpen;
     this.collapseFormEmit.emit(this.isFormOpen);
   }
+
 }

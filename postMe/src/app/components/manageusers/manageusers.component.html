@@ -2,12 +2,12 @@
 <form class="manage-users__form">
     <strong class="manage-users__form-title"><p>User Management</p></strong>
     <p> Search user <input></p>
-    <p> New user <button type="button"
-                        (click)="displayCreateUsers()">+</button></p>
+    <button type="button"
+                        (click)="displayCreateUsers()">New user</button>
 
     <create-users *ngIf="createUsers===true"
-                    
-                    (isFormOpen)="receiveCloseForm($event)"></create-users>
+                    [receivedOpenComponent]="sentOpenComponent"
+                    (collapseFormEmit)="receiveCloseForm($event)"></create-users>
 
     
 </form>
