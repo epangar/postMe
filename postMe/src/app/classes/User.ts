@@ -1,3 +1,5 @@
+import { Ticket } from './Ticket'
+
 export class User{
     id: string;
     userNumber: string;
@@ -8,6 +10,7 @@ export class User{
     country: string;
     job: string;
     phoneNumber: string;
+    // tickets: Ticket[];
 
     constructor(){
                             

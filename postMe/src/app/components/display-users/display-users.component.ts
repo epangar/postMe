@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ListOfUsers } from '../../mocks/MockUsers';
+import { User } from '../../classes/User'
 
 @Component({
   selector: 'display-users',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayUsersComponent implements OnInit {
 
+  listOfUsers: User[]=ListOfUsers;
   constructor() { }
 
   ngOnInit() {
+    this.listOfUsers = ListOfUsers.map(user=>user);
+   
   }
 
+  
 }

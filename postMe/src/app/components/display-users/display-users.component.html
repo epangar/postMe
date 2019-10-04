@@ -1,1 +1,30 @@
-<p>display-users works!</p>
+<table class="table table-striped col-lg-12 display_users__table">
+    <thead>
+        <tr class="row">
+            <th class="col-lg-3">User Number</th>
+            <th class="col-lg-3">Name</th>
+            <th class="col-lg-3">Surname</th>
+            <th class="col-lg-3">Business</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of listOfUsers" class="row">
+            <td class="col-lg-3">{{user.userNumber}}</td>
+            <td class="col-lg-3">{{user.name}}</td>
+            <td class="col-lg-3">{{user.surname}}</td>
+            <td class="col-lg-3">{{user.business}}</td>
+        </tr>
+        <tr *ngFor="let user of listOfUsers" class="row">
+            <td class="col-lg-3">{{user.userNumber}}</td>
+            <td class="col-lg-3">{{user.name}}</td>
+            <td class="col-lg-3">{{user.surname}}</td>
+            <td class="col-lg-3">{{user.business}}</td>
+        </tr>
+        <tr *ngFor="let user of listOfUsers" class="row">
+            <td class="col-lg-3">{{user.userNumber}}</td>
+            <td class="col-lg-3">{{user.name}}</td>
+            <td class="col-lg-3">{{user.surname}}</td>
+            <td class="col-lg-3">{{user.business}}</td>
+        </tr>
+    </tbody>
+</table>

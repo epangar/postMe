@@ -21,7 +21,6 @@ export class ManageusersComponent implements OnInit {
   }
 
   receiveCloseForm(input: boolean):void{
-    console.log(input);
     this.createUsers=input;
   }
 }

@@ -9,6 +9,7 @@ export class Ticket extends User{
 
     open: boolean;
     status: string;
+    urgency: number;
     creationDate: Date;
     
 }
