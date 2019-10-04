@@ -9,13 +9,27 @@ import { User } from '../../classes/User'
 })
 export class DisplayUsersComponent implements OnInit {
 
-  listOfUsers: User[]=ListOfUsers;
+  listOfUsers: User[] = ListOfUsers;
+  whoIsDisplayed: number = -1;
+  // dataIsShowing:boolean;
   constructor() { }
 
   ngOnInit() {
+    
     this.listOfUsers = ListOfUsers.map(user=>user);
+    
+    // this.dataIsShowing=false;
    
   }
 
+  showData(){
+    // this.dataIsShowing=!this.dataIsShowing;
+  }
+
+  showUserData(i: number){
+    
+    this.whoIsDisplayed = i;
+    
+  }
   
 }

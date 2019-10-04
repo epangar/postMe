@@ -10,6 +10,8 @@ export class User{
     country: string;
     job: string;
     phoneNumber: string;
+    typeOfUser: string;
+    // email: string;
     // tickets: Ticket[];
 
     constructor(){

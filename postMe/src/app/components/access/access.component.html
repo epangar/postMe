@@ -26,14 +26,14 @@
 
 
     <div class="row--corrected">
-        <div class="access__managers col-md-6">
+        <div class="access__managers col-md-4">
             <manageusers *ngIf="accessIsClicked===true && currentlyManaging==='users'" 
                         class="manage-users"></manageusers>
             <managetickets *ngIf="accessIsClicked===true && currentlyManaging==='tickets'" 
                         class="manage-tickets"></managetickets>
         </div>
     
-        <div class="access__displayer col-md-6">
+        <div class="access__displayer col-md-8">
             <div>
                 <display-users></display-users>
             </div>
