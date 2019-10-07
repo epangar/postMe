@@ -73,5 +73,13 @@ app.locals.title = 'Express - My Server';
 const index = require('./routes/index');
 app.use('/', index);
 
+/* const authRouter = require("./routes/auth");
+app.use("/api/auth", authRouter);
+
+const users = require("./routes/users");
+app.use("/api/users", users);
+
+const ticket = require("./routes/ticket");
+app.use("/api/ticket", ticket); */
 
 module.exports = app;
