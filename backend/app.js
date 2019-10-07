@@ -29,6 +29,20 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 // Middleware Setup
+
+var whitelist = [
+  'http://localhost:4200' 
+];
+var corsOptions = {
+  origin: function(origin, callback){
+      var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+      callback(null, originIsWhitelisted);
+  },
+  credentials: true
+};
+app.use(cors(corsOptions));
+
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -42,6 +56,7 @@ app.use(require('node-sass-middleware')({
   sourceMap: true
 }));
       
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
