@@ -1,1 +1,17 @@
-<p>login-form works!</p>
+<div class="login_form">
+
+    
+        <div class="row--corrected">
+            <form class="login-form__form offset-md-3 col-md-6 row" >
+                    LOGIN
+                <p class="col-md-12">Username:<input [(ngModel)]="username" name="username" placeholder="Username (required)"></p>
+                <p class="col-md-12">Password:<input [(ngModel)]="password" name="password" placeholder="Password (required)"></p>
+    
+                <button (click)="showSignUp()" type="button">Sign Up</button>
+                <button (click)="login()" type="button">Login</button>
+            </form>
+            <div class="offset-3"></div>
+        </div>
+    
+        <sign-up *ngIf="signUpIsSelected"></sign-up>
+    </div>
