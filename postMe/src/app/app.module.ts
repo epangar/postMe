@@ -18,6 +18,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 //Services
 import { SessionService } from './services/session.service';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SessionService } from './services/session.service';
     DisplayTicketsComponent,
     CreateUsersComponent,
     CreateTicketsComponent,
-    SignUpComponent
+    SignUpComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
