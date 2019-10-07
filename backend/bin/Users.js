@@ -8,7 +8,7 @@ User.collection.drop();
 
 
 
-const employees = [
+const users = [
   {
   username : "admin",
   password: "1234",
@@ -21,8 +21,8 @@ const employees = [
   }
 ];
 
-User.create(employees, (err) => {
+User.create(users, (err) => {
   if (err) { throw(err) }
-  console.log(`Created ${employees.length} employees`)
+  console.log(`Created ${users.length} users`)
   mongoose.disconnect();
 });

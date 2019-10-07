@@ -8,10 +8,14 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const cors = require('cors');
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 
 mongoose
-  .connect('mongodb://localhost/backend', {useNewUrlParser: true})
+  //.connect('mongodb://localhost/postMe', {useNewUrlParser: true})
+  .connect(process.env.DBURL, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
