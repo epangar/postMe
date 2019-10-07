@@ -2,14 +2,23 @@ const express = require('express');
 const router  = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 
 
-const logInPromise = (user, req) => new Promise((resolve,reject) => {
-    req.login(user, (err) => {
-        if (err) return reject('Something went wrong');
-        resolve(user);
-      });
-});  
+
+const login = (req, user) => {
+    return new Promise((resolve,reject) => {
+      req.login(user, err => {
+        //console.log(user)
+  
+        if(err) {
+          reject(new Error('Something went wrong'))
+        }else{
+          resolve(user);
+        }
+      })
+    })
+  }  
 
 
 /* GET home page */
@@ -28,35 +37,30 @@ router.post('/signup', (req, res, next) => {
         const salt = bcrypt.genSaltSync(10);
         const hashPass = bcrypt.hashSync(password, salt);
 
-        const theUser = new User({
+        return new User({
           username,
           password: hashPass
-        });
+        }).save();
     
-        return theUser.save().then( user => logInPromise(user,req));
+        
     })
+    .then( user => logInPromise(user,req))
     .then(user => res.status(200).json(user))
     .catch(e => res.status(500).json({message:e.message}));
 });
 
 router.post('/login', (req, res, next) => {
-    const {username, password} = req.body;
+    passport.authenticate('local', (err, theUser, failureDetails) => {
+      
+      // Check for errors
+      if (err) next(new Error('Something went wrong')); 
+      if (!theUser) next(failureDetails)
   
-    if (!username || !password) {
-      res.status(400).json({ message: 'Provide username and password' });
-      return;
-    }
-
-    User.findOne({ username })
-    .then( user => {
-        if(!user) throw new Error('The username does not exist');
-        if(!bcrypt.compareSync(password, user.password)) throw new Error('The password is not correct');
-        return logInPromise(user,req);    
-    })
-    .then(user => res.status(200).json(user))
-    .catch(e => res.status(500).json({message:e.message}));
-
-});
+      // Return user and logged in
+      login(req, theUser).then(user => res.status(200).json(req.user));
+  
+    })(req, res, next);
+  });
 
 
 router.get('/loggedin', (req, res) => {

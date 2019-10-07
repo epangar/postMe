@@ -17,7 +17,7 @@ const employees = [
   {
   username : "bernard",
   password: "1234",
-  role: "worker"
+  role: "user"
   }
 ];
 
