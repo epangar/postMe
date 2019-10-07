@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 
 //Router
 import { AppRoutingModule } from './app-routing.module';
@@ -14,10 +16,11 @@ import { DisplayTicketsComponent } from './components/display-tickets/display-ti
 import { CreateUsersComponent } from './components/create-users/create-users.component';
 import { CreateTicketsComponent } from './components/create-tickets/create-tickets.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-
+import { LoginComponent } from './components/login/login.component';
 
 //Services
 import { SessionService } from './services/session.service';
+
 
 @NgModule({
   declarations: [
@@ -29,11 +32,13 @@ import { SessionService } from './services/session.service';
     DisplayTicketsComponent,
     CreateUsersComponent,
     CreateTicketsComponent,
-    SignUpComponent
+    SignUpComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [SessionService],
   bootstrap: [AppComponent]
