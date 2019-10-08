@@ -30,6 +30,7 @@ export class SessionService {
   }
 
   private configureUser(set=false){
+    
     return (user) => {
       if(set){
         this.user = user;
@@ -57,6 +58,7 @@ export class SessionService {
   }
 
   login(username:string, password:string):Observable<any>{
+    
     return this.http.post(`${this.BASEURL}/api/auth/login`, {username,password},this.options)
       .pipe(map(response =>response))
       .pipe(map(this.configureUser(true)))
