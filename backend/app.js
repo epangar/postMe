@@ -74,12 +74,12 @@ const index = require('./routes/index');
 app.use('/', index);
 
 /* const authRouter = require("./routes/auth");
-app.use("/api/auth", authRouter);
+app.use("/api/auth", auth); */
 
 const users = require("./routes/users");
 app.use("/api/users", users);
 
-const ticket = require("./routes/ticket");
-app.use("/api/ticket", ticket); */
+const ticket = require("./routes/tickets");
+app.use("/api/tickets", ticket);
 
 module.exports = app;
