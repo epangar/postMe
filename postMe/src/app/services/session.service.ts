@@ -15,6 +15,7 @@ export class SessionService {
   options:object = {withCredentials:true};
   
   constructor(private http: HttpClient) {
+    
     this.isLoggedIn().subscribe();
   }
 
@@ -30,7 +31,6 @@ export class SessionService {
   }
 
   private configureUser(set=false){
-    
     return (user) => {
       if(set){
         this.user = user;
@@ -81,10 +81,17 @@ export class SessionService {
 
 
   
-  isLoggedIn():Observable<any> {
+  /* isLoggedIn():Observable<any> {
     return this.http.get(`${this.BASEURL}/api/auth/loggedin`,this.options)
-      .pipe(map(response =>response))
-      .pipe(map(this.configureUser(true)))
-      catchError((e: any) => Observable.throw(this.handleError(e)));
+    .pipe(map(response =>response))
+    .pipe(map(this.configureUser(true)))
+    catchError((e: any) => Observable.throw(this.handleError(e)));
+  } */
+
+  isLoggedIn(){
+    return this.http.get(`${this.BASEURL}/api/auth/loggedin`,this.options)
+    .pipe(map(response =>response))
+    .pipe(map(this.configureUser(true)))
+    catchError((e: any) => Observable.throw(this.handleError(e)));
   }
 }
