@@ -6,5 +6,11 @@ import { map, catchError, take } from 'rxjs/operators';
 @Injectable()
 export class UserService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  //Create user
+  //Get all the users
+  //Get a particular user
+  //Update an user
+  //Delete an user
 }

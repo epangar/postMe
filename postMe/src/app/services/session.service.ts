@@ -2,16 +2,16 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Observable, Subject } from 'rxjs';
 import { map, catchError, take } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+import { User } from '../classes/User';
 
-interface User {
-  username:string,
-  password:string
-}
+
+
 
 @Injectable()
 export class SessionService {
-
-  BASEURL:string = "http://localhost:3000"
+  user: User = new User();
+  BASEURL:string = "http://localhost:3000";
   options:object = {withCredentials:true};
   
   constructor(private http: HttpClient) {
@@ -19,7 +19,6 @@ export class SessionService {
     this.isLoggedIn().subscribe();
   }
 
-  private user:User;
   private userEvent:EventEmitter<any>;
 
   getUser(){
@@ -44,6 +43,11 @@ export class SessionService {
       return user;
     }
   }
+  handleUser(user?: User){
+    this.user = user;
+    this.userEvent.emit(this.user);
+    return this.user;
+  }
 
   handleError(e) {
     console.log(e);
@@ -51,7 +55,7 @@ export class SessionService {
   }
 
   signup(username:string, password:string):Observable<any>{
-    return this.http.post(`${this.BASEURL}/api/auth/signup`, {username,password}, this.options)
+    return this.http.post(`${environment.BASEURL}/api/auth/signup`, {username,password}, this.options)
       .pipe(map(response =>response))
       .pipe(map(this.configureUser(true)))
       catchError((e: any) => Observable.throw(this.handleError(e)));
@@ -59,21 +63,21 @@ export class SessionService {
 
   login(username:string, password:string):Observable<any>{
     
-    return this.http.post(`${this.BASEURL}/api/auth/login`, {username,password},this.options)
+    return this.http.post(`${environment.BASEURL}/api/auth/login`, {username,password},this.options)
       .pipe(map(response =>response))
       .pipe(map(this.configureUser(true)))
       catchError((e: any) => Observable.throw(this.handleError(e)));
   }
 
 /*   logout():Observable<any>{
-    return this.http.get(`${this.BASEURL}/api/auth/logout`,this.options)
+    return this.http.get(`${environment.BASEURL}/api/auth/logout`,this.options)
       .pipe(map(response =>response))
       .pipe(map(this.configureUser(false)))
       catchError((e: any) => Observable.throw(this.handleError(e)));
   }
  */  
   logOut(){
-    this.http.get(`${this.BASEURL}/api/auth/logout`,this.options)
+    this.http.get(`${environment.BASEURL}/api/auth/logout`,this.options)
     .pipe(map(response =>response))
     .pipe(map(this.configureUser(false)))
     catchError((e: any) => Observable.throw(this.handleError(e)));
@@ -82,14 +86,14 @@ export class SessionService {
 
   
   /* isLoggedIn():Observable<any> {
-    return this.http.get(`${this.BASEURL}/api/auth/loggedin`,this.options)
+    return this.http.get(`${environment.BASEURL}/api/auth/loggedin`,this.options)
     .pipe(map(response =>response))
     .pipe(map(this.configureUser(true)))
     catchError((e: any) => Observable.throw(this.handleError(e)));
   } */
 
   isLoggedIn(){
-    return this.http.get(`${this.BASEURL}/api/auth/loggedin`,this.options)
+    return this.http.get(`${environment.BASEURL}/api/auth/loggedin`, this.options)
     .pipe(map(response =>response))
     .pipe(map(this.configureUser(true)))
     catchError((e: any) => Observable.throw(this.handleError(e)));
