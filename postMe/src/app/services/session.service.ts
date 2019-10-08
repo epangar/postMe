@@ -18,7 +18,16 @@ export class SessionService {
     
     this.isLoggedIn().subscribe();
   }
+  handleUser(user?: User){
+    this.user = user;
+    this.userEvent.emit(this.user);
+    return this.user;
+  }
 
+  handleError(e) {
+    console.log(e);
+    return Observable.throw(e.json().message);
+  }
   private userEvent:EventEmitter<any>;
 
   getUser(){
@@ -43,16 +52,7 @@ export class SessionService {
       return user;
     }
   }
-  handleUser(user?: User){
-    this.user = user;
-    this.userEvent.emit(this.user);
-    return this.user;
-  }
-
-  handleError(e) {
-    console.log(e);
-    return Observable.throw(e.json().message);
-  }
+  
 
   signup(username:string, password:string):Observable<any>{
     return this.http.post(`${environment.BASEURL}/api/auth/signup`, {username,password}, this.options)
@@ -79,7 +79,7 @@ export class SessionService {
   logOut(){
     this.http.get(`${environment.BASEURL}/api/auth/logout`,this.options)
     .pipe(map(response =>response))
-    .pipe(map(this.configureUser(false)))
+    .pipe(map(this.configureUser(false))),
     catchError((e: any) => Observable.throw(this.handleError(e)));
   }
 
@@ -92,7 +92,7 @@ export class SessionService {
     catchError((e: any) => Observable.throw(this.handleError(e)));
   } */
 
-  isLoggedIn(){
+  isLoggedIn():Observable<any>{
     return this.http.get(`${environment.BASEURL}/api/auth/loggedin`, this.options)
     .pipe(map(response =>response))
     .pipe(map(this.configureUser(true)))
