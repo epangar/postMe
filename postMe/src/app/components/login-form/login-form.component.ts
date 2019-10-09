@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from "../../services/session.service";
 
+
 @Component({
   selector: 'login-form',
   templateUrl: './login-form.component.html',
@@ -10,6 +11,7 @@ export class LoginFormComponent implements OnInit {
   username: string;
   password: string;
   error: string;
+  
 
   constructor(public sessionService: SessionService) {}
 
@@ -18,7 +20,7 @@ export class LoginFormComponent implements OnInit {
   login() {
     
     console.log(this.username, this.password);
-    this.sessionService.login(this.username, this.password).subscribe();
+    this.sessionService.logIn(this.username, this.password);
   }
 
   signup() {

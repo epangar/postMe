@@ -42,15 +42,15 @@ export class SessionService {
     return this.http.post(`${environment.BASEURL}/api/auth/signup`, this.options)
       .pipe(map(response =>response))
       .pipe(map(user=> this.handleUser(user))),
-      catchError((e: any) => Observable.throw(this.handleError(e)));
+      catchError(this.handleError);
   }
 
-  login(username:string, password:string){
-    
+  logIn(username:string , password:string) {  
     return this.http
       .post(`${environment.BASEURL}/api/auth/login`, {username,password},this.options)
       .pipe(map(response => response))
-      .pipe(map(this.configureUser(true))),
+      .pipe(map(user => this.handleUser(user)))
+      .subscribe(),
       catchError(this.handleError);
   }
 
