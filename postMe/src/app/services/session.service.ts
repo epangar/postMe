@@ -51,7 +51,7 @@ export class SessionService {
       .post(`${environment.BASEURL}/api/auth/login`, {username,password},this.options)
       .pipe(map(response => response))
       .pipe(map(this.configureUser(true))),
-      catchError((e: any) => Observable.throw(this.handleError(e)));
+      catchError(this.handleError);
   }
 
   logOut(){

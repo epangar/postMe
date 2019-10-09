@@ -28,39 +28,38 @@ router.post('/signup', (req, res, next) => {
         const salt = bcrypt.genSaltSync(10);
         const hashPass = bcrypt.hashSync(password, salt);
 
-        return new User({
+        const theUser = new User({
           username,
           password: hashPass
-        }).save();
+        });
     
-        
+        return theUser.save().then( user => logInPromise(user,req));
     })
-    .then( user => logInPromise(user,req))
     .then(user => res.status(200).json(user))
     .catch(e => res.status(500).json({message:e.message}));
 });
 
 router.post('/login', (req, res, next) => {
   const {username, password} = req.body;
-
+  
   if (!username || !password) {
     res.status(400).json({ message: 'Provide username and password' });
     return;
   }
-
   User.findOne({ username })
-  .then( user => {
-      if(!user) throw new Error('The username does not exist');
-      if(!bcrypt.compareSync(password, user.password)) throw new Error('The password is not correct');
-      return logInPromise(user,req);    
-  })
-  .then(user => res.status(200).json(user))
-  .catch(e => res.status(500).json({message:e.message}));
+    .then( user => {
+        if(!user) throw new Error('The username does not exist');
+        if(!bcrypt.compareSync(password, user.password)) {
+          throw new Error('The password is not correct')
+        };
+        return logInPromise(user,req);    
+    })
+    .then(user => res.status(200).json(user))
+    .catch(e => res.status(500).json({message:e.message}));
 
 });
 
 router.get('/loggedin', (req, res) => {
-  console.log("He entrado en LoggedIn")
   if(req.user){
         return res.status(200).json(req.user);
     }else{
