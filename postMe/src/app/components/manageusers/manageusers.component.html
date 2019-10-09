@@ -4,6 +4,7 @@
     <p> Search user <input></p>
     <button type="button"
                         (click)="displayCreateUsers()">New user</button>
+    <button type="button" (click)="getAllUsers()">Get All Users</button>
 
     <create-users *ngIf="createUsers===true"
                     [receivedOpenComponent]="sentOpenComponent"

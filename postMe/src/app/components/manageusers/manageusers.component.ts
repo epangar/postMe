@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+/* import { UserService } from '../../services/user.service'
+import { SessionService } from 'src/app/services/session.service'; */
 
 @Component({
   selector: 'manageusers',
@@ -9,7 +11,10 @@ export class ManageusersComponent implements OnInit {
 
   sentOpenComponent: boolean;
   createUsers: boolean;
-  constructor() { }
+  constructor(
+    //private UserService:UserService, 
+    //private sessionService: SessionService 
+     ) {}
 
   ngOnInit() {
     this.createUsers=false;
@@ -22,5 +27,9 @@ export class ManageusersComponent implements OnInit {
 
   receiveCloseForm(input: boolean):void{
     this.createUsers=input;
+  }
+
+   getAllUsers(){
+  //  return this.UserService.getList()
   }
 }

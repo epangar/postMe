@@ -1,73 +1,97 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient, HttpResponse } from "@angular/common/http";
-import { Observable, Subject } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
+import { Observable, ReplaySubject } from 'rxjs';
 import { map, catchError, take } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from '../classes/User';
+import { Ticket } from '../classes/Ticket';
 
 
-
+export interface loginUser {
+  username: string;
+  password: string;
+  _id: any;
+}
 
 @Injectable()
 export class SessionService {
-  user: User = new User();
-  BASEURL:string = "http://localhost:3000";
+  user: any;
+  tickets: Ticket[];
+  userEventEmitter: EventEmitter<any> = new EventEmitter();
   options:object = {withCredentials:true};
+  //userChanged: ReplaySubject < loginUser | void > = new ReplaySubject();
+  firstTime = true;
+
   
   constructor(private http: HttpClient) {
-    
+    //this.userChanged.next(null);
     this.isLoggedIn().subscribe();
-  }
-  handleUser(user?: User){
-    this.user = user;
-    this.userEvent.emit(this.user);
-    return this.user;
   }
 
   handleError(e) {
-    console.log(e);
     return Observable.throw(e.json().message);
   }
-  private userEvent:EventEmitter<any>;
 
-  getUser(){
+  handleUser(user?: object){
+    this.user = user;
+    this.userEventEmitter.emit(this.user);
+    return this.user;
+  }
+
+  signup(user: loginUser){
+    return this.http.post(`${environment.BASEURL}/api/auth/signup`, this.options)
+      .pipe(map(response =>response))
+      .pipe(map(user=> this.handleUser(user))),
+      catchError((e: any) => Observable.throw(this.handleError(e)));
+  }
+
+  login(username:string, password:string){
+    
+    return this.http
+      .post(`${environment.BASEURL}/api/auth/login`, {username,password},this.options)
+      .pipe(
+        map((data: loginUser) =>{
+          this.user=data;
+          this.user._id=data._id;
+          this.firstTime = false;
+          //this.userChanged.next(data);
+          //this.router.navigate(["/private"]);
+          return this.user;
+        }))
+      .pipe(map(this.configureUser(true)))
+      catchError((e: any) => Observable.throw(this.handleError(e)));
+  }
+  
+
+  getUser(): loginUser | void {
     return this.user;
   }
 
   getUserEvent(){
-    return this.userEvent;
+    return this.userEventEmitter;
   }
+
+  
 
   private configureUser(set=false){
     return (user) => {
       if(set){
         this.user = user;
-        this.userEvent.emit(user);
+        this.userEventEmitter.emit(user);
         console.log(`Setting user, welcome ${this.user.username}`)
       }else{
         console.log(`bye bye ${this.user.username}`)
         this.user = null
-        this.userEvent.emit(null);
+        this.userEventEmitter.emit(null);
       }
       return user;
     }
   }
   
 
-  signup(username:string, password:string):Observable<any>{
-    return this.http.post(`${environment.BASEURL}/api/auth/signup`, {username,password}, this.options)
-      .pipe(map(response =>response))
-      .pipe(map(this.configureUser(true)))
-      catchError((e: any) => Observable.throw(this.handleError(e)));
-  }
+  
 
-  login(username:string, password:string):Observable<any>{
-    
-    return this.http.post(`${environment.BASEURL}/api/auth/login`, {username,password},this.options)
-      .pipe(map(response =>response))
-      .pipe(map(this.configureUser(true)))
-      catchError((e: any) => Observable.throw(this.handleError(e)));
-  }
+ 
 
 /*   logout():Observable<any>{
     return this.http.get(`${environment.BASEURL}/api/auth/logout`,this.options)

@@ -14,14 +14,14 @@ export class TicketService {
   ticketEvent: EventEmitter<any> = new EventEmitter;
 
   constructor(public http: HttpClient, public sessionService: SessionService) { 
-    this.getAllTickets(this.sessionService.user.id).subscribe(l => this.tickets = l);
+    this.getAllTickets(this.sessionService.user._id).subscribe(l => this.tickets = l);
   }
 
   //Create ticket
   createTicket(){
     return this.http.post(`${environment.BASEURL}/api/list`, this.tickets)
       .pipe(map((res) => {
-        this.getAllTickets(this.sessionService.user.id).subscribe( r => {
+        this.getAllTickets(this.sessionService.user._id).subscribe( r => {
           
           this.tickets = r;
           this.ticketEvent.emit(this.tickets);

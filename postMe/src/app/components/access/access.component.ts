@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginFormComponent } from '../login-form/login-form.component'
+import { LoginFormComponent } from '../login-form/login-form.component';
+/* import { UserService } from '../../services/user.service'
+import { SessionService } from 'src/app/services/session.service'; */
 
 @Component({
   selector: 'access',
@@ -14,10 +16,13 @@ export class AccessComponent implements OnInit {
   currentlyNotManaging: string = "tickets";
   
 
-  constructor() { }
+  constructor(
+    //private UserService:UserService, 
+    //private sessionService: SessionService 
+    ) { }
 
   ngOnInit() {
-
+    
   }
 
 
