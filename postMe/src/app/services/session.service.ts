@@ -49,17 +49,23 @@ export class SessionService {
     
     return this.http
       .post(`${environment.BASEURL}/api/auth/login`, {username,password},this.options)
-      .pipe(
-        map((data: loginUser) =>{
-          this.user=data;
-          this.user._id=data._id;
-          this.firstTime = false;
-          //this.userChanged.next(data);
-          //this.router.navigate(["/private"]);
-          return this.user;
-        }))
-      .pipe(map(this.configureUser(true)))
+      .pipe(map(response => response))
+      .pipe(map(this.configureUser(true))),
       catchError((e: any) => Observable.throw(this.handleError(e)));
+  }
+
+  logOut(){
+    this.http.get(`${environment.BASEURL}/api/auth/logout`,this.options)
+    .pipe(map( ()=>this.handleUser()))
+    .pipe(map(this.configureUser(false))),
+    catchError((e: any) => Observable.throw(this.handleError(e)));
+  }
+
+  isLoggedIn():Observable<any> {
+    return this.http.get(`${environment.BASEURL}/api/auth/loggedin`,this.options)
+    .pipe(map(response =>response))
+    .pipe(map(user=>this.configureUser(true)))
+    catchError((e: any) => Observable.throw(this.handleError(e)));
   }
   
 
@@ -100,12 +106,7 @@ export class SessionService {
       catchError((e: any) => Observable.throw(this.handleError(e)));
   }
  */  
-  logOut(){
-    this.http.get(`${environment.BASEURL}/api/auth/logout`,this.options)
-    .pipe(map(response =>response))
-    .pipe(map(this.configureUser(false))),
-    catchError((e: any) => Observable.throw(this.handleError(e)));
-  }
+  
 
 
   
@@ -116,10 +117,5 @@ export class SessionService {
     catchError((e: any) => Observable.throw(this.handleError(e)));
   } */
 
-  isLoggedIn():Observable<any>{
-    return this.http.get(`${environment.BASEURL}/api/auth/loggedin`, this.options)
-    .pipe(map(response =>response))
-    .pipe(map(this.configureUser(true)))
-    catchError((e: any) => Observable.throw(this.handleError(e)));
-  }
+  
 }

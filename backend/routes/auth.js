@@ -2,23 +2,14 @@ const express = require('express');
 const router  = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
-const passport = require('passport');
 
 
-
-const login = (req, user) => {
-    return new Promise((resolve,reject) => {
-      req.login(user, err => {
-        //console.log(user)
-  
-        if(err) {
-          reject(new Error('Something went wrong'))
-        }else{
-          resolve(user);
-        }
-      })
-    })
-  }  
+const logInPromise = (user, req) => new Promise((resolve,reject) => {
+  req.login(user, (err) => {
+      if (err) return reject('Something went wrong');
+      resolve(user);
+    });
+}); 
 
 
 /* GET home page */
@@ -50,22 +41,27 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-    passport.authenticate('local', (err, theUser, failureDetails) => {
-      
-      // Check for errors
-      if (err) next(new Error('Something went wrong')); 
-      if (!theUser) next(failureDetails)
-  
-      // Return user and logged in
-      login(req, theUser).then(user => res.status(200).json(req.user));
-  
-    })(req, res, next);
-  });
+  const {username, password} = req.body;
 
+  if (!username || !password) {
+    res.status(400).json({ message: 'Provide username and password' });
+    return;
+  }
+
+  User.findOne({ username })
+  .then( user => {
+      if(!user) throw new Error('The username does not exist');
+      if(!bcrypt.compareSync(password, user.password)) throw new Error('The password is not correct');
+      return logInPromise(user,req);    
+  })
+  .then(user => res.status(200).json(user))
+  .catch(e => res.status(500).json({message:e.message}));
+
+});
 
 router.get('/loggedin', (req, res) => {
-  debugger
-    if(req.user){
+  console.log("He entrado en LoggedIn")
+  if(req.user){
         return res.status(200).json(req.user);
     }else{
         return res.status(400).json({message:"You should loggin first"});

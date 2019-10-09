@@ -13,13 +13,12 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
 
+mongoose.Promise= Promise;
 mongoose
-  //.connect('mongodb://localhost/postMe', {useNewUrlParser: true})
-  .connect(process.env.DBURL, {useNewUrlParser: true})
-  .then(x => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
-  })
-  .catch(err => {
+  .connect(process.env.DBURL, {useMongoClient: true})
+  .then(() => {
+    console.log('Connected to Mongo!')
+  }).catch(err => {
     console.error('Error connecting to mongo', err)
   });
 
@@ -30,8 +29,9 @@ const app = express();
 
 // Middleware Setup
 
+
 var whitelist = [
-  'http://localhost:4200' 
+  'http://localhost:4200'
 ];
 var corsOptions = {
   origin: function(origin, callback){
@@ -42,11 +42,22 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(
+  session({
+    secret: "our-passport-local-strategy-app",
+    resave: true,
+    saveUninitialized: true,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // 1 day
+    })
+  })
+);
+require("./passport")(app);
 
 // Express View engine setup
 
@@ -57,7 +68,6 @@ app.use(require('node-sass-middleware')({
 }));
       
 
-
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -67,7 +77,6 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
 app.locals.title = 'Express - My Server';
-
 
 
 const index = require('./routes/index');
@@ -81,5 +90,11 @@ app.use("/api/users", users);
 
 const ticket = require("./routes/tickets");
 app.use("/api/tickets", ticket);
+
+
+app.use(function(req, res) {
+  res.sendfile(__dirname + '/public/index.html');
+});
+
 
 module.exports = app;
