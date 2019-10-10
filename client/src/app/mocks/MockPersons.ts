@@ -1,6 +1,6 @@
-import { User } from '../classes/User'
+import { Person } from '../classes/Person'
 
-export let  ListOfUsers: User[] = [
+export let  ListOfPersons: Person[] = [
     {   
         id: "ABCDEF1234",
         userNumber: "0MDHG",

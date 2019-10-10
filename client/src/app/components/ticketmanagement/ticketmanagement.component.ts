@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'managetickets',
+  selector: 'manage-tickets',
   templateUrl: './ticketmanagement.component.html',
   styleUrls: ['../../styles/ticketmanagement.scss']
 })

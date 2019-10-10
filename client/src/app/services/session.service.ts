@@ -3,7 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, ReplaySubject } from 'rxjs';
 import { map, catchError, take } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { User } from '../classes/User';
 import { LoginUser } from '../classes/AccessUser';
 import { SignUpUser } from '../classes/AccessUser';
 import { Ticket } from '../classes/Ticket';
@@ -19,9 +18,8 @@ import { Ticket } from '../classes/Ticket';
 export class SessionService {
   user: any;
   tickets: Ticket[];
-  userEventEmitter: EventEmitter<any> = new EventEmitter();
+  userEventEmitter: EventEmitter<any> = new EventEmitter<any>();
   options:object = {withCredentials:true};
-  //userChanged: ReplaySubject < loginUser | void > = new ReplaySubject();
   firstTime = true;
 
   
@@ -41,7 +39,7 @@ export class SessionService {
   }
 
   signup = (user: SignUpUser):Observable<any> => {
-    debugger
+    
     return this.http.post(`${environment.BASEURL}/api/auth/signup`, user, this.options)
       .pipe(map(response =>response))
       .pipe(map(user=> this.handleUser(user)))
@@ -49,8 +47,8 @@ export class SessionService {
   }
 
   logIn = (user: LoginUser) :Observable<any> => {  
-    return this.http
-      .post(`${environment.BASEURL}/api/auth/login`, user ,this.options)
+    
+    return this.http.post(`${environment.BASEURL}/api/auth/login`, user ,this.options)
       .pipe(map(response => response))
       .pipe(map(user => this.handleUser(user)))
       .pipe(catchError(this.handleError));

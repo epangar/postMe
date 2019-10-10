@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginFormComponent } from '../login-form/login-form.component';
-/* import { UserService } from '../../services/user.service'*/
+/* import { PersonService } from '../../services/user.service'*/
 import { SessionService } from 'src/app/services/session.service'; 
 
 @Component({
@@ -10,14 +10,12 @@ import { SessionService } from 'src/app/services/session.service';
 })
 export class AccessComponent implements OnInit {
 
-  accessIsClicked: boolean=false;
+  // accessIsClicked: boolean=false;
   signUpIsSelected: boolean=false;
-  currentlyManaging: string = "users";
-  currentlyNotManaging: string = "tickets";
   
 
   constructor(
-    //private UserService:UserService, 
+    //private PersonService:PersonService, 
     //private sessionService: SessionService 
     ) { }
 
@@ -27,24 +25,28 @@ export class AccessComponent implements OnInit {
 
 
 
-  clickAccess(){
-    this.accessIsClicked=!this.accessIsClicked;
-  }
+  // clickAccess(){
+  //   this.accessIsClicked=!this.accessIsClicked;
+  // }
 
-  clickUsers(){
-    // this.manageUsers=!this.manageUsers;
+  // clickUsers(){
+  //   // this.manage-persons=!this.manage-persons;
     
-    if(this.currentlyManaging === "users"){
-      this.currentlyManaging = "tickets";
-      this.currentlyNotManaging = "users";
+  //   if(this.currentlyManaging === "users"){
+  //     this.currentlyManaging = "tickets";
+  //     this.currentlyNotManaging = "users";
 
-    } else {
-      this.currentlyNotManaging = "tickets";
-      this.currentlyManaging = "users";
-    }
-  }
+  //   } else {
+  //     this.currentlyNotManaging = "tickets";
+  //     this.currentlyManaging = "users";
+  //   }
+  // }
 
   showSignUp(){
     this.signUpIsSelected=!this.signUpIsSelected;
+  }
+
+  receiveLoggedUser(input: any){
+    debugger
   }
 }

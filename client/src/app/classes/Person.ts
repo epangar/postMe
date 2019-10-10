@@ -1,6 +1,6 @@
 import { Ticket } from './Ticket'
 
-export class User{
+export class Person{
     id: string;
     username: string;
     userNumber: string;

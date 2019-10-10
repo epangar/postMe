@@ -1,27 +1,36 @@
 <div class="access">
     <div class="row--corrected">
-        <form class="access__form offset-md-3 col-md-6 row" *ngIf="accessIsClicked===false">
+
+    <!-- Por defecto Login. Si se pulsa Signup, se oculta Login y se muestra Signup-->
+
+        <!-- <form class="access__form offset-md-3 col-md-6 row" *ngIf="accessIsClicked===false">
             <p class="col-md-12">Username:<input></p>
             <p class="col-md-12">Password:<input></p>
 
-            <button (click)="showSignUp()" type="button">Sign Up</button>
+            
             <button (click)="clickAccess()" type="button">Login Provisional</button>
-        </form>
+        </form> -->
+        <button (click)="showSignUp()" type="button">Sign Up</button>
+
         <div class="offset-3"></div>
+
         <sign-up *ngIf="signUpIsSelected" 
-            class="col-md-12"></sign-up> 
+                class="col-md-12"></sign-up> 
+
+        <login-form *ngIf="!signUpIsSelected"
+                    (sessionService.userEventEmitter)="receiveLoggedUser($event)"
+                    class="col-md-12"></login-form>
     </div>
 
    
 </div>
 
 
-<login-form class="col-md-12"></login-form>
+<!-- >>>><login-form class="col-md-12"></login-form> <-<-<-<-<-
 
 <div  *ngIf="accessIsClicked===true">
 
-        <!-- <p *ngIf="sessionService.user.username">Welcome, {{sessionService.user.username}}</p> -->
-
+        
     <div class="row--corrected">
         <label class="col-md-12"> Managing {{ currentlyManaging }}
             <button (click)="clickUsers()">Manage {{ currentlyNotManaging }} </button>
@@ -31,17 +40,17 @@
 
     <div class="row--corrected">
         <div class="access__managers col-md-4">
-            <manageusers *ngIf="accessIsClicked===true && currentlyManaging==='users'" 
-                        class="manage-users"></manageusers>
-            <managetickets *ngIf="accessIsClicked===true && currentlyManaging==='tickets'" 
-                        class="manage-tickets"></managetickets>
+            <manage-persons *ngIf="accessIsClicked===true && currentlyManaging==='users'" 
+                        class="manage-persons"></manage-persons>
+            <manage-tickets *ngIf="accessIsClicked===true && currentlyManaging==='tickets'" 
+                        class="manage-tickets"></manage-tickets>
         </div>
     
         <div class="access__displayer col-md-8">
             <div>
-                <display-users *ngIf="accessIsClicked===true && currentlyManaging==='users'">
+                <display-persons *ngIf="accessIsClicked===true && currentlyManaging==='users'">
 
-                </display-users>
+                </display-persons>
             </div>
             <div>
                 <display-tickets *ngIf="accessIsClicked===true && currentlyManaging==='tickets'"></display-tickets>
@@ -49,4 +58,4 @@
         </div>
     </div>
 
-</div>
+</div> -->

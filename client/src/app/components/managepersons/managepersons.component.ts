@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-/* import { UserService } from '../../services/user.service'
+/* import { PersonService } from '../../services/user.service'
 import { SessionService } from 'src/app/services/session.service'; */
 
 @Component({
-  selector: 'manageusers',
-  templateUrl: './manageusers.component.html',
-  styleUrls: ['../../styles/manageusers.scss']
+  selector: 'manage-persons',
+  templateUrl: './managepersons.component.html',
+  styleUrls: ['../../styles/manage-persons.scss']
 })
-export class ManageusersComponent implements OnInit {
+export class ManagePersonsComponent implements OnInit {
 
   sentOpenComponent: boolean;
   createUsers: boolean;
   constructor(
-    //private UserService:UserService, 
+    //private PersonService:PersonService, 
     //private sessionService: SessionService 
      ) {}
 
@@ -30,6 +30,6 @@ export class ManageusersComponent implements OnInit {
   }
 
    getAllUsers(){
-  //  return this.UserService.getList()
+  //  return this.PersonService.getList()
   }
 }

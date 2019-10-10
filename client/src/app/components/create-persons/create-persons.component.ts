@@ -1,11 +1,11 @@
 import { Component, OnInit, Output, EventEmitter, Input  } from '@angular/core';
 
 @Component({
-  selector: 'create-users',
-  templateUrl: './create-users.component.html',
-  styleUrls: ['../../styles/create-users.scss']
+  selector: 'create-persons',
+  templateUrl: './create-persons.component.html',
+  styleUrls: ['../../styles/create-persons.scss']
 })
-export class CreateUsersComponent implements OnInit {
+export class CreatePersonsComponent implements OnInit {
   
   isFormOpen: boolean;
 

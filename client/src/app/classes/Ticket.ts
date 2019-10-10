@@ -1,6 +1,6 @@
-import { User } from './User';
+import { Person } from './Person';
 
-export class Ticket /*extends User*/ {
+export class Ticket /*extends Person*/ {
     ticketId: string;
     ticketNumber: number;
     ticketTitle: string;

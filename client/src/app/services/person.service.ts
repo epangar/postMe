@@ -3,12 +3,12 @@ import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Observable, Subject } from 'rxjs';
 import { map, catchError, take } from 'rxjs/operators';
 import { Ticket } from '../classes/Ticket';
-import { User } from '../classes/User';
+import { Person } from '../classes/Person';
 import { SessionService } from "./session.service";
 import { environment } from 'src/environments/environment';
 
 @Injectable()
-export class UserService {
+export class PersonService {
 
   constructor(private http: HttpClient) { }
 

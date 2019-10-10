@@ -9,32 +9,36 @@ import { AppRoutingModule } from './app-routing.module';
 
 //Components
 import { AppComponent } from './app.component';
-import { ManageusersComponent } from './components/manageusers/manageusers.component';
 import { AccessComponent } from './components/access/access.component';
-import { TicketmanagementComponent } from './components/ticketmanagement/ticketmanagement.component';
-import { DisplayUsersComponent } from './components/display-users/display-users.component';
-import { DisplayTicketsComponent } from './components/display-tickets/display-tickets.component';
-import { CreateUsersComponent } from './components/create-users/create-users.component';
+import { CreatePersonsComponent } from './components/create-persons/create-persons.component';
 import { CreateTicketsComponent } from './components/create-tickets/create-tickets.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DisplayTicketsComponent } from './components/display-tickets/display-tickets.component';
+import { DisplayPersonsComponent } from './components/display-persons/display-persons.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { ManagePersonsComponent } from './components/managepersons/managepersons.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { TicketmanagementComponent } from './components/ticketmanagement/ticketmanagement.component';
 
 //Services
 import { SessionService } from './services/session.service';
+import { TicketService } from './services/ticket.service';
+import { PersonService } from './services/person.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ManageusersComponent,
+    ManagePersonsComponent,
     AccessComponent,
     TicketmanagementComponent,
-    DisplayUsersComponent,
+    DisplayPersonsComponent,
     DisplayTicketsComponent,
-    CreateUsersComponent,
+    CreatePersonsComponent,
     CreateTicketsComponent,
     SignUpComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,7 @@ import { SessionService } from './services/session.service';
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [SessionService],
+  providers: [SessionService, TicketService, PersonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

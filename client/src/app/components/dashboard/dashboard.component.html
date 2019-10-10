@@ -1,0 +1,33 @@
+<!-- <div  *ngIf="accessIsClicked===true"> -->
+
+        <!-- <p *ngIf="sessionService.user.username.length>0">Welcome, {{sessionService.user.username}}</p>
+         -->
+
+    <div class="row--corrected">
+        <label class="col-md-12"> Managing {{ currentlyManaging }}
+            <button (click)="clickUsers()">Manage {{ currentlyNotManaging }} </button>
+        </label>
+    </div>
+
+
+    <div class="row--corrected">
+        <div class="access__managers col-md-4">
+            <manage-persons *ngIf="currentlyManaging==='users'" 
+                        class="manage-persons"></manage-persons>
+            <manage-tickets *ngIf="currentlyManaging==='tickets'" 
+                        class="manage-tickets"></manage-tickets>
+        </div>
+    
+        <div class="access__displayer col-md-8">
+            <div>
+                <display-persons *ngIf="currentlyManaging==='users'">
+
+                </display-persons>
+            </div>
+            <div>
+                <display-tickets *ngIf="currentlyManaging==='tickets'"></display-tickets>
+            </div>
+        </div>
+    </div>
+
+<!-- </div> -->

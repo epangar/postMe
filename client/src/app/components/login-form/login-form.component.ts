@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { SessionService } from "../../services/session.service";
 import { LoginUser } from 'src/app/classes/AccessUser';
+import { Router } from '@angular/router';
 
 
 
@@ -14,17 +15,20 @@ export class LoginFormComponent implements OnInit {
   username: string;
   password: string;
   error: string;
-  
 
-  constructor(public sessionService: SessionService) {}
+  @Output() loggedUserEmitter: EventEmitter<any> = new EventEmitter<any>();
+
+  constructor(public sessionService: SessionService, public route: Router) {}
 
   ngOnInit() {}
 
   login() {
     const myLoginData: LoginUser = new LoginUser(this.username, this.password);
-    debugger
-    console.log(myLoginData['username'], myLoginData['password']);
+    console.log(myLoginData);
     this.sessionService.logIn(myLoginData).subscribe();
+    
+    console.log(this.sessionService)
+     
   }
 
   
