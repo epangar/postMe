@@ -20,6 +20,8 @@
 
 <div  *ngIf="accessIsClicked===true">
 
+        <!-- <p *ngIf="sessionService.user.username">Welcome, {{sessionService.user.username}}</p> -->
+
     <div class="row--corrected">
         <label class="col-md-12"> Managing {{ currentlyManaging }}
             <button (click)="clickUsers()">Manage {{ currentlyNotManaging }} </button>

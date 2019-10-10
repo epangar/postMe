@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginFormComponent } from '../login-form/login-form.component';
-/* import { UserService } from '../../services/user.service'
-import { SessionService } from 'src/app/services/session.service'; */
+/* import { UserService } from '../../services/user.service'*/
+import { SessionService } from 'src/app/services/session.service'; 
 
 @Component({
   selector: 'access',

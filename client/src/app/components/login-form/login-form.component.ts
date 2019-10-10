@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from "../../services/session.service";
-import { LoginUser } from '../../classes/LoginUser';
+import { LoginUser } from 'src/app/classes/AccessUser';
+
 
 
 
@@ -20,17 +21,11 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {}
 
   login() {
-    
-    console.log(this.username, this.password);
-    this.sessionService.logIn(this.username, this.password);
+    const myLoginData: LoginUser = new LoginUser(this.username, this.password);
+    debugger
+    console.log(myLoginData['username'], myLoginData['password']);
+    this.sessionService.logIn(myLoginData).subscribe();
   }
 
-  signup() {
-    const user = {
-      username: this.username,
-      password: this.password
-    };
-    console.log(user);
-    //this.sessionService.signup(this.username, this.password).subscribe();
-  }
+  
 }

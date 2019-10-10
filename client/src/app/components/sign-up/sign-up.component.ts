@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginUser } from '../../classes/LoginUser';
+import { SignUpUser } from '../../classes/AccessUser';
 import { SessionService } from "../../services/session.service";
 
 
@@ -23,9 +23,9 @@ export class SignUpComponent implements OnInit {
   }
 
   signup() {
-    const user = new LoginUser(this.username, this.email, this.password);
-    console.log(user);
-    this.sessionService.signup(user).subscribe();
+    const mySignUpUser: SignUpUser = new SignUpUser(this.username, this.email, this.password);
+    console.log(mySignUpUser);
+    this.sessionService.signup(mySignUpUser).subscribe();
   }
 
 }

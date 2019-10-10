@@ -4,7 +4,8 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { map, catchError, take } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from '../classes/User';
-import { LoginUser } from '../classes/LoginUser';
+import { LoginUser } from '../classes/AccessUser';
+import { SignUpUser } from '../classes/AccessUser';
 import { Ticket } from '../classes/Ticket';
 
 
@@ -33,27 +34,26 @@ export class SessionService {
     return Observable.throw(e) /*(e.json().message);*/
   }
 
-  handleUser(user?: LoginUser){
+  handleUser(user?: object){
     this.user = user;
     this.userEventEmitter.emit(this.user);
     return this.user;
   }
 
-  signup = (user: LoginUser):Observable<any> => {
+  signup = (user: SignUpUser):Observable<any> => {
     debugger
-    return this.http.post(`${environment.BASEURL}/api/auth/signup`, this.options)
+    return this.http.post(`${environment.BASEURL}/api/auth/signup`, user, this.options)
       .pipe(map(response =>response))
       .pipe(map(user=> this.handleUser(user)))
       .pipe(catchError(this.handleError))
   }
 
-  logIn(username:string , password:string) {  
+  logIn = (user: LoginUser) :Observable<any> => {  
     return this.http
-      .post(`${environment.BASEURL}/api/auth/login`, {username,password},this.options)
+      .post(`${environment.BASEURL}/api/auth/login`, user ,this.options)
       .pipe(map(response => response))
       .pipe(map(user => this.handleUser(user)))
-      .subscribe(),
-      catchError(this.handleError);
+      .pipe(catchError(this.handleError));
   }
 
   logOut(){
