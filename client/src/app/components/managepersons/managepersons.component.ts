@@ -13,7 +13,7 @@ export class ManagePersonsComponent implements OnInit {
   createUsers: boolean;
   constructor(
     //private PersonService:PersonService, 
-    //private sessionService: SessionService 
+    //private session: Session 
      ) {}
 
   ngOnInit() {

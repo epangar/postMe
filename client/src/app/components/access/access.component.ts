@@ -12,11 +12,12 @@ export class AccessComponent implements OnInit {
 
   // accessIsClicked: boolean=false;
   signUpIsSelected: boolean=false;
+  user: any;
   
 
   constructor(
     //private PersonService:PersonService, 
-    //private sessionService: SessionService 
+    //private session: Session 
     ) { }
 
   ngOnInit() {

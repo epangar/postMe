@@ -17,7 +17,7 @@ export class SignUpComponent implements OnInit {
   email: string;
   
 
-  constructor(public sessionService: SessionService) { }
+  constructor(private session: SessionService) { }
 
   ngOnInit() {
   }
@@ -25,7 +25,7 @@ export class SignUpComponent implements OnInit {
   signup() {
     const mySignUpUser: SignUpUser = new SignUpUser(this.username, this.email, this.password);
     console.log(mySignUpUser);
-    this.sessionService.signup(mySignUpUser).subscribe();
+    this.session.signup(mySignUpUser).subscribe();
   }
 
 }
