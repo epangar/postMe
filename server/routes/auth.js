@@ -15,7 +15,9 @@ const logInPromise = (user, req) => new Promise((resolve,reject) => {
 /* GET home page */
 router.post('/signup', (req, res, next) => {
     const {username, password} = req.body;
-  
+    
+    console.log(req.body)
+    
     if (!username || !password) {
       res.status(400).json({ message: 'Provide username and password' });
       return;
@@ -25,15 +27,20 @@ router.post('/signup', (req, res, next) => {
     .then( user => {
         if(user) throw new Error('The username already exists');
         
+        console.log("Usuario no existía previamente")
+
         const salt = bcrypt.genSaltSync(10);
         const hashPass = bcrypt.hashSync(password, salt);
+
+        console.log("COntraseña encriptada")
 
         const theUser = new User({
           username,
           password: hashPass
         });
-    
-        return theUser.save().then( user => logInPromise(user,req));
+        
+        console.log(theUser)
+        return theUser.save()//.then( user => logInPromise(user,req));
     })
     .then(user => res.status(200).json(user))
     .catch(e => res.status(500).json({message:e.message}));

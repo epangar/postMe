@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginUser } from '../../classes/LoginUser';
+import { SessionService } from "../../services/session.service";
+
+
 
 @Component({
   selector: 'sign-up',
@@ -8,10 +12,20 @@ import { Component, OnInit } from '@angular/core';
  
 })
 export class SignUpComponent implements OnInit {
+  username: string;
+  password: string;
+  email: string;
+  
 
-  constructor() { }
+  constructor(public sessionService: SessionService) { }
 
   ngOnInit() {
+  }
+
+  signup() {
+    const user = new LoginUser(this.username, this.email, this.password);
+    console.log(user);
+    this.sessionService.signup(user).subscribe();
   }
 
 }

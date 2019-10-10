@@ -4,14 +4,15 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { map, catchError, take } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from '../classes/User';
+import { LoginUser } from '../classes/LoginUser';
 import { Ticket } from '../classes/Ticket';
 
 
-export interface loginUser {
-  username: string;
-  password: string;
-  _id: any;
-}
+// export interface loginUser {
+//   username: string;
+//   password: string;
+//   _id: any;
+// }
 
 @Injectable()
 export class SessionService {
@@ -29,20 +30,21 @@ export class SessionService {
   }
 
   handleError(e) {
-    return Observable.throw(e.json().message);
+    return Observable.throw(e) /*(e.json().message);*/
   }
 
-  handleUser(user?: object){
+  handleUser(user?: LoginUser){
     this.user = user;
     this.userEventEmitter.emit(this.user);
     return this.user;
   }
 
-  signup(user: loginUser){
+  signup = (user: LoginUser):Observable<any> => {
+    debugger
     return this.http.post(`${environment.BASEURL}/api/auth/signup`, this.options)
       .pipe(map(response =>response))
-      .pipe(map(user=> this.handleUser(user))),
-      catchError(this.handleError);
+      .pipe(map(user=> this.handleUser(user)))
+      .pipe(catchError(this.handleError))
   }
 
   logIn(username:string , password:string) {  
@@ -69,7 +71,7 @@ export class SessionService {
   }
   
 
-  getUser(): loginUser | void {
+  getUser(): LoginUser | void {
     return this.user;
   }
 

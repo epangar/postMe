@@ -5,16 +5,18 @@
             <p class="col-md-12">Password:<input></p>
 
             <button (click)="showSignUp()" type="button">Sign Up</button>
-            <button (click)="clickAccess()" type="button">Login</button>
+            <button (click)="clickAccess()" type="button">Login Provisional</button>
         </form>
         <div class="offset-3"></div>
+        <sign-up *ngIf="signUpIsSelected" 
+            class="col-md-12"></sign-up> 
     </div>
 
-   AAAA <sign-up *ngIf="signUpIsSelected"></sign-up> AAA
+   
 </div>
 
 
-<login-form></login-form>
+<login-form class="col-md-12"></login-form>
 
 <div  *ngIf="accessIsClicked===true">
 
@@ -35,10 +37,12 @@
     
         <div class="access__displayer col-md-8">
             <div>
-                <display-users></display-users>
+                <display-users *ngIf="accessIsClicked===true && currentlyManaging==='users'">
+
+                </display-users>
             </div>
             <div>
-                <display-tickets></display-tickets>
+                <display-tickets *ngIf="accessIsClicked===true && currentlyManaging==='tickets'"></display-tickets>
             </div>
         </div>
     </div>

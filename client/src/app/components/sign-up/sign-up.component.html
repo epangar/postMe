@@ -1,5 +1,22 @@
-<form>
-  <label>Username: <input type="text" requiered></label>
-  <label>Email: <input type="text" requiered></label>
-  <label>Password: <input type="text" requiered></label>
-</form>
+<div class="sign-up__form col-md-6">
+
+
+  <div class="row--corrected">
+
+    <form class="sign-up__form col-md-12 row">
+      <label class="col-md-12">Username: <input type="text" [(ngModel)]="username" required name="username"
+          placeholder="Username (required)"></label>
+      <label class="col-md-12">Email: <input type="text" [(ngModel)]="email" required name="email"
+          placeholder="Email (required)"></label>
+      <label class="col-md-12">Password: <input type="text" [(ngModel)]="password" required name="password"
+          placeholder="Password (required)"></label>
+
+      <p class="sign-up__form-errors">
+        <!-- {{}} -->
+      </p>
+
+      <button class="col-md-3" type="submit" (click)="signup()"> Signup </button>
+
+    </form>
+  </div>
+</div>
