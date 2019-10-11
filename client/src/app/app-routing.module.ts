@@ -2,14 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AccessComponent } from './components/access/access.component';
+
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SessionService } from './services/session.service'
 
 
 const routes: Routes = [
-  {path: "", redirectTo: "home", pathMatch: 'full' },
-  {path: "signin", component: AccessComponent},
-  {path: "home", component: AppComponent},
+  {path: "", redirectTo: "signin", pathMatch: 'full' },
+  //{path: "signin", component: AccessComponent },
+  {path: "signin", loadChildren: './components/access/access.module#AccessModule' },
+  {path: "home", redirectTo: "signin", pathMatch: 'full'},
   {path: "dashboard/:id", component: DashboardComponent},
   
   // {path: "home", component: AppComponent},
