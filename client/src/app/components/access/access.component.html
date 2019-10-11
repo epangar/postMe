@@ -1,8 +1,6 @@
 <div class="access">
     <div class="row--corrected">
 
-    <!-- Por defecto Login. Si se pulsa Signup, se oculta Login y se muestra Signup-->
-
         <!-- <form class="access__form offset-md-3 col-md-6 row" *ngIf="accessIsClicked===false">
             <p class="col-md-12">Username:<input></p>
             <p class="col-md-12">Password:<input></p>
@@ -12,7 +10,9 @@
         </form> -->
         <!-- <div class="offset-3"></div> -->
 
-        <login-form class="col-md-12"></login-form>
+        <login-form class="col-md-12"
+            [TerryPratchett]="currentUser" 
+            (session.userEventEmitter)="receiveLoggedUser($event)"></login-form>
                 
         <sign-up  class="col-md-12"></sign-up> 
 

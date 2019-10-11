@@ -1,7 +1,7 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { map, catchError } from 'rxjs/operators';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { LoginUser, SignUpUser } from '../classes/AccessUser';
 import { Ticket } from '../classes/Ticket';
@@ -11,21 +11,25 @@ import { Router } from '@angular/router';
 export class SessionService {
   user: any;
   tickets: Ticket[];
-  userEventEmitter: EventEmitter<any> = new EventEmitter<any>();
+  userEventEmitter : EventEmitter<any> = new EventEmitter<any>();
   options:object = {withCredentials:true};
   // firstTime = true;
-
+  
+  
+  
+  
+  
   
   constructor(private http: HttpClient, private route: Router) {
-    //this.userChanged.next(null);
     this.isLoggedIn().subscribe();
   }
 
-  handleError(e) {
-    return Observable.throw(e) /*(e.json().message);*/
+  handleError(e): Observable<any> {
+    return throwError(e);
   }
 
   handleUser(user?: object){
+    debugger
     this.user = user;
     this.userEventEmitter.emit(this.user);
     return this.user;
@@ -59,8 +63,8 @@ export class SessionService {
     return this.http.get(`${environment.BASEURL}/api/auth/loggedin`,this.options)
     .pipe(map(response =>response))
     .pipe(map(user=>this.configureUser(true)))
-    .pipe(catchError((e: any) => 
-      Observable.throw(this.handleError(e)))
+    .pipe(catchError((e: any) => this.handleError(e))
+      // Observable.throw(this.handleError(e)))
       );
   }
   

@@ -1,8 +1,8 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { SessionService } from "../../services/session.service";
 import { LoginUser } from 'src/app/classes/AccessUser';
 import { Router } from '@angular/router';
-import { sequenceEqual } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 
 
@@ -18,7 +18,8 @@ export class LoginFormComponent implements OnInit {
   error: string;
   user: any;
 
-  @Output() loggedUserEmitter: EventEmitter<any> = new EventEmitter<any>();
+  @Input() TerryPratchett;
+  // @Output() loggedUserEmitter: EventEmitter<any> = this.session.userEventEmitter;
 
   constructor(private session: SessionService, public route: Router) {}
 
@@ -28,13 +29,13 @@ export class LoginFormComponent implements OnInit {
 
   login() {
     const myLoginData: LoginUser = new LoginUser(this.username, this.password);
-    console.log(myLoginData);
-    this.session.logIn(myLoginData).subscribe(
-      
-    );
+    this.session.logIn(myLoginData)
+    .pipe(map(()=>{
+      debugger
+      this.session.userEventEmitter.emit(this.session.user)
+    }))
+    .subscribe();
     
-    console.log(this.session)
-     
   }
 
   
