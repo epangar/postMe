@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from '../../services/session.service'
+import { SessionService } from '../../services/session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'dashboard',
@@ -11,9 +12,13 @@ export class DashboardComponent implements OnInit {
   currentlyManaging: string = "users";
   currentlyNotManaging: string = "tickets";
 
-  constructor(private session: SessionService) { }
+  constructor(private session: SessionService, public router: Router) { }
 
   ngOnInit() {
+    debugger;
+    if(!this.session.user){
+      this.router.navigate(['signin', " "])
+    }
   }
 
   clickUsers(){

@@ -11,8 +11,7 @@ const routes: Routes = [
   {path: "signin", component: AccessComponent},
   {path: "home", component: AppComponent},
   {path: "dashboard/:id", component: DashboardComponent},
-  {path: "dashboard", component: DashboardComponent},
-
+  
   // {path: "home", component: AppComponent},
 ];
 

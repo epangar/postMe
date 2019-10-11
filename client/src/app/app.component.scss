@@ -9,6 +9,15 @@
     margin-right: 0px;
     margin-left: 0px;
 
+    &__link{
+      text-decoration: none;
+      color: #fff;
+
+      :hover{
+        text-decoration: none;
+      }
+    }
+
     &__logout{
       margin: 0 auto;
       padding: 1%;
