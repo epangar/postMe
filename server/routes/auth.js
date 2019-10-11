@@ -49,7 +49,7 @@ router.post('/signup', (req, res, next) => {
 router.post('/login', (req, res, next) => {
 
   const { username, password } = req.body;
-  console.log(req.body)
+  //console.log(req.body)
 
   if (!username || !password) {
     res.status(400).json({ message: 'Provide username and password' });

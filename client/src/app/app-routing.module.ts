@@ -7,7 +7,7 @@ import { SessionService } from './services/session.service'
 
 
 const routes: Routes = [
-  {path: "", redirectTo: "signin", pathMatch: 'full' },
+  {path: "", redirectTo: "home", pathMatch: 'full' },
   {path: "signin", component: AccessComponent},
   {path: "home", component: AppComponent},
   {path: "dashboard/:id", component: DashboardComponent},

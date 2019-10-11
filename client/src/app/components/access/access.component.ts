@@ -43,11 +43,9 @@ export class AccessComponent implements OnInit {
   //   }
   // }
 
-  showSignUp(){
-    this.signUpIsSelected=!this.signUpIsSelected;
-  }
+  
 
   receiveLoggedUser(input: any){
-    debugger
+    
   }
 }

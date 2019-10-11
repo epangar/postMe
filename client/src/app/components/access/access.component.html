@@ -10,17 +10,13 @@
             
             <button (click)="clickAccess()" type="button">Login Provisional</button>
         </form> -->
-        <button (click)="showSignUp()" type="button">Sign Up</button>
-        <p *ngIf="user"> USUARIO!!!</p>
-        <p *ngIf="session"> Session!!!!!</p>
-        <div class="offset-3"></div>
+        <!-- <div class="offset-3"></div> -->
 
-        <sign-up *ngIf="signUpIsSelected" 
-                class="col-md-12"></sign-up> 
+        <login-form class="col-md-12"></login-form>
+                
+        <sign-up  class="col-md-12"></sign-up> 
 
-        <login-form *ngIf="!signUpIsSelected"
-                    (session.userEventEmitter)="receiveLoggedUser($event)"
-                    class="col-md-12"></login-form>
+        
     </div>
 
    

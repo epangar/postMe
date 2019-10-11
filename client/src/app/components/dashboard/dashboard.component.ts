@@ -35,6 +35,6 @@ export class DashboardComponent implements OnInit {
 
   logOut = () => {
     this.session.logOut()
-    debugger
+    
   }
 }
