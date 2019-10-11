@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from '../../services/session.service'
 
 @Component({
   selector: 'dashboard',
@@ -10,7 +11,7 @@ export class DashboardComponent implements OnInit {
   currentlyManaging: string = "users";
   currentlyNotManaging: string = "tickets";
 
-  constructor() { }
+  constructor(private session: SessionService) { }
 
   ngOnInit() {
   }
@@ -25,5 +26,10 @@ export class DashboardComponent implements OnInit {
       this.currentlyNotManaging = "tickets";
       this.currentlyManaging = "users";
     }
+  }
+
+  logOut = () => {
+    this.session.logOut()
+    debugger
   }
 }

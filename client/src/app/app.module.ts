@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule }   from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
+
 
 
 //Router
@@ -45,6 +47,8 @@ import { PersonService } from './services/person.service';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    RouterModule
+
   ],
   providers: [SessionService, TicketService, PersonService],
   bootstrap: [AppComponent]

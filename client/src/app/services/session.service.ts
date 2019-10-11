@@ -1,18 +1,11 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { map, catchError } from 'rxjs/operators';
 import { Observable, ReplaySubject } from 'rxjs';
-import { map, catchError, take } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { LoginUser } from '../classes/AccessUser';
-import { SignUpUser } from '../classes/AccessUser';
+import { LoginUser, SignUpUser } from '../classes/AccessUser';
 import { Ticket } from '../classes/Ticket';
-
-
-// export interface loginUser {
-//   username: string;
-//   password: string;
-//   _id: any;
-// }
+import { Router } from '@angular/router';
 
 @Injectable()
 export class SessionService {
@@ -20,10 +13,10 @@ export class SessionService {
   tickets: Ticket[];
   userEventEmitter: EventEmitter<any> = new EventEmitter<any>();
   options:object = {withCredentials:true};
-  firstTime = true;
+  // firstTime = true;
 
   
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private route: Router) {
     //this.userChanged.next(null);
     this.isLoggedIn().subscribe();
   }
@@ -51,7 +44,8 @@ export class SessionService {
     return this.http.post(`${environment.BASEURL}/api/auth/login`, user ,this.options)
       .pipe(map(response => response))
       .pipe(map(user => this.handleUser(user)))
-      .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError))
+      .pipe(map(user => this.navigateTo(user)))
   }
 
   logOut(){
@@ -61,13 +55,22 @@ export class SessionService {
     catchError((e: any) => Observable.throw(this.handleError(e)));
   }
 
-  isLoggedIn():Observable<any> {
+  isLoggedIn = () :Observable<any> => {
     return this.http.get(`${environment.BASEURL}/api/auth/loggedin`,this.options)
     .pipe(map(response =>response))
     .pipe(map(user=>this.configureUser(true)))
-    catchError((e: any) => Observable.throw(this.handleError(e)));
+    .pipe(catchError((e: any) => 
+      Observable.throw(this.handleError(e)))
+      );
   }
   
+  navigateTo=(user: object)=> {
+    
+    if(user){
+      this.route.navigate(['dashboard', user['username'] ])
+    }
+    
+  }
 
   getUser(): LoginUser | void {
     return this.user;
@@ -94,28 +97,6 @@ export class SessionService {
     }
   }
   
-
-  
-
- 
-
-/*   logout():Observable<any>{
-    return this.http.get(`${environment.BASEURL}/api/auth/logout`,this.options)
-      .pipe(map(response =>response))
-      .pipe(map(this.configureUser(false)))
-      catchError((e: any) => Observable.throw(this.handleError(e)));
-  }
- */  
-  
-
-
-  
-  /* isLoggedIn():Observable<any> {
-    return this.http.get(`${environment.BASEURL}/api/auth/loggedin`,this.options)
-    .pipe(map(response =>response))
-    .pipe(map(this.configureUser(true)))
-    catchError((e: any) => Observable.throw(this.handleError(e)));
-  } */
 
   
 }
