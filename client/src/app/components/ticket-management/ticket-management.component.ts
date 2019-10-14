@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'manage-tickets',
-  templateUrl: './ticketmanagement.component.html',
-  styleUrls: ['../../styles/ticketmanagement.scss']
+  templateUrl: './ticket-management.component.html',
+  styleUrls: ['../../styles/ticket-management.scss']
 })
-export class TicketmanagementComponent implements OnInit {
+export class TicketManagementComponent implements OnInit {
 
   sentOpenComponent: boolean;
   createTickets: boolean;

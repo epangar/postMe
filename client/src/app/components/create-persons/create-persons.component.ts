@@ -9,9 +9,7 @@ export class CreatePersonsComponent implements OnInit {
   
   isFormOpen: boolean;
 
-  @Input() 
-  
-  set receivedOpenComponent(sentOpenComponent :boolean ){
+  @Input() set receivedOpenComponent(sentOpenComponent :boolean ){
     
     this.isFormOpen=sentOpenComponent;
   }

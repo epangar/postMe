@@ -4,7 +4,7 @@ import { SessionService } from 'src/app/services/session.service'; */
 
 @Component({
   selector: 'manage-persons',
-  templateUrl: './managepersons.component.html',
+  templateUrl: './manage-persons.component.html',
   styleUrls: ['../../styles/manage-persons.scss']
 })
 export class ManagePersonsComponent implements OnInit {

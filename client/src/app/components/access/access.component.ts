@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'access',
@@ -15,13 +16,13 @@ export class AccessComponent implements OnInit {
 
   constructor(
     //private PersonService:PersonService, 
-    //private session: Session 
+    private session: SessionService,
     private router: Router 
     ) { }
 
   ngOnInit() {
     if(!this.currentUser){
-      debugger
+      // debugger
       setTimeout(()=>console.clear(), 2000)
     } else{
       console.log(this.currentUser)

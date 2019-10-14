@@ -10,7 +10,7 @@
 @import "./app/styles/login-form.scss";
 @import "./app/styles/manage-persons.scss";
 @import "./app/styles/sign-up.scss";
-@import "./app/styles/ticketmanagement.scss";
+@import "./app/styles/ticket-management.scss";
 
 html, body {
     width: 100%;
@@ -29,7 +29,7 @@ html, body {
 }
 
 @media (min-width: 768px) {
-    .access_displayer{
+    .access__displayer{
         margin-top: 5px;
     }
     

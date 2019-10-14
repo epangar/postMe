@@ -13,13 +13,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreatePersonsComponent } from './components/create-persons/create-persons.component';
 import { CreateTicketsComponent } from './components/create-tickets/create-tickets.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { DisplayTicketsComponent } from './components/display-tickets/display-tickets.component';
-import { DisplayPersonsComponent } from './components/display-persons/display-persons.component';
+//import { DashboardComponent } from './components/dashboard/dashboard.component';
+// import { DisplayTicketsComponent } from './components/display-tickets/display-tickets.component';
+// import { DisplayPersonsComponent } from './components/display-persons/display-persons.component';
 // import { LoginFormComponent } from './components/login-form/login-form.component';
-import { ManagePersonsComponent } from './components/managepersons/managepersons.component';
+// import { ManagePersonsComponent } from './components/managepersons/managepersons.component';
 // import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { TicketmanagementComponent } from './components/ticketmanagement/ticketmanagement.component';
+// import { TicketManagementComponent } from './components/ticketmanagement/ticketmanagement.component';
 
 //Services
 import { SessionService } from './services/session.service';
@@ -30,15 +30,15 @@ import { PersonService } from './services/person.service';
 @NgModule({
   declarations: [
     AppComponent,
-    ManagePersonsComponent,
-    TicketmanagementComponent,
-    DisplayPersonsComponent,
-    DisplayTicketsComponent,
+    // ManagePersonsComponent,
+    // TicketManagementComponent,
+    // DisplayPersonsComponent,
+    // DisplayTicketsComponent,
     CreatePersonsComponent,
     CreateTicketsComponent,
     // SignUpComponent,
     // LoginFormComponent,
-    DashboardComponent
+    // DashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,14 +1,7 @@
 <div class="access">
     <div class="row--corrected">
 
-        <!-- <form class="access__form offset-md-3 col-md-6 row" *ngIf="accessIsClicked===false">
-            <p class="col-md-12">Username:<input></p>
-            <p class="col-md-12">Password:<input></p>
-
-            
-            <button (click)="clickAccess()" type="button">Login Provisional</button>
-        </form> -->
-        <!-- <div class="offset-3"></div> -->
+        
 
         <login-form class="col-md-12"
             [TerryPratchett]="currentUser" 
@@ -23,36 +16,3 @@
 </div>
 
 
-<!-- >>>><login-form class="col-md-12"></login-form> <-<-<-<-<-
-
-<div  *ngIf="accessIsClicked===true">
-
-        
-    <div class="row--corrected">
-        <label class="col-md-12"> Managing {{ currentlyManaging }}
-            <button (click)="clickUsers()">Manage {{ currentlyNotManaging }} </button>
-        </label>
-    </div>
-
-
-    <div class="row--corrected">
-        <div class="access__managers col-md-4">
-            <manage-persons *ngIf="accessIsClicked===true && currentlyManaging==='users'" 
-                        class="manage-persons"></manage-persons>
-            <manage-tickets *ngIf="accessIsClicked===true && currentlyManaging==='tickets'" 
-                        class="manage-tickets"></manage-tickets>
-        </div>
-    
-        <div class="access__displayer col-md-8">
-            <div>
-                <display-persons *ngIf="accessIsClicked===true && currentlyManaging==='users'">
-
-                </display-persons>
-            </div>
-            <div>
-                <display-tickets *ngIf="accessIsClicked===true && currentlyManaging==='tickets'"></display-tickets>
-            </div>
-        </div>
-    </div>
-
-</div> -->
