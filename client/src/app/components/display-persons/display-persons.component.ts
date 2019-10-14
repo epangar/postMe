@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListOfPersons } from '../../mocks/MockPersons';
-import { Person } from '../../classes/Person'
+import { Person } from '../../classes/Person';
+import { PersonService } from '../../services/person.service';
 
 @Component({
   selector: 'display-persons',
@@ -12,7 +13,7 @@ export class DisplayPersonsComponent implements OnInit {
   listOfPersons: Person[] = ListOfPersons;
   whoIsDisplayed: number = -1;
   // dataIsShowing:boolean;
-  constructor() { }
+  constructor(private personService: PersonService) { }
 
   ngOnInit() {
     
@@ -34,6 +35,14 @@ export class DisplayPersonsComponent implements OnInit {
     }
     
     
+  }
+
+  editOpen(){
+
+  }
+
+  editUser(id){
+    this.personService.editUser(id).subscribe();
   }
   
 }

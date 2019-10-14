@@ -8,6 +8,8 @@ import { ManagePersonsComponent } from '../manage-persons/manage-persons.compone
 import { TicketManagementComponent } from '../ticket-management/ticket-management.component';
 import { CreateTicketsComponent } from '../create-tickets/create-tickets.component';
 import { CreatePersonsComponent } from '../create-persons/create-persons.component';
+import { EditPersonComponent } from '../edit-person/edit-person.component';
+import { EditTicketComponent } from '../edit-ticket/edit-ticket.component';
 
 import { FormsModule }   from '@angular/forms';
 
@@ -23,7 +25,9 @@ import { FormsModule }   from '@angular/forms';
         ManagePersonsComponent,
         CreateTicketsComponent,
         CreatePersonsComponent,
-        TicketManagementComponent
+        TicketManagementComponent,
+        EditPersonComponent,
+        EditTicketComponent
     ]
   })
   export class DashboardModule {

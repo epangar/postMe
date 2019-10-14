@@ -19,7 +19,7 @@ export class TicketService {
 
   //Create ticket
   createTicket(){
-    return this.http.post(`${environment.BASEURL}/api/list`, this.tickets)
+    return this.http.post(`${environment.BASEURL}/api/tickets`, this.tickets)
       .pipe(map((res) => {
         this.getAllTickets(this.session.user._id).subscribe( r => {
           
