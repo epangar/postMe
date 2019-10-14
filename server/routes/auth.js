@@ -39,7 +39,6 @@ router.post('/signup', (req, res, next) => {
         password: hashPass
       });
 
-      console.log(theUser)
       return theUser.save().then(user => logInPromise(user, req));
     })
     .then(user => res.status(200).json(user))
@@ -49,8 +48,7 @@ router.post('/signup', (req, res, next) => {
 router.post('/login', (req, res, next) => {
 
   const { username, password } = req.body;
-  //console.log(req.body)
-
+  
   if (!username || !password) {
     res.status(400).json({ message: 'Provide username and password' });
     return;
