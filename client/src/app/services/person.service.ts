@@ -19,7 +19,8 @@ export class PersonService {
       const person = {
         username: e.username,
         role: e.role
-      }
+      };
+      return person;
     })
     return this.listOfPerson;
   }
@@ -35,5 +36,10 @@ export class PersonService {
 
   //Get a particular user
   //Update an user
+  editUser(user) {
+    return this.http.put(`${environment.BASEURL}/api/users/${user.id}`, user)
+      .pipe(map(user => user))
+      .pipe(map(user => user));
+  }
   //Delete an user
 }
