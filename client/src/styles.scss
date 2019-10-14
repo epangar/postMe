@@ -28,18 +28,16 @@ html, body {
         margin-left: 0px;
 }
 
-@media (min-width: 1024px) {
-    // .app__footer {
-    //   background-color: red;
-    // }
-
+@media (min-width: 768px) {
+    .access_displayer{
+        margin-top: 5px;
+    }
+    
     .app__screen{
         height: 90% !important;
     }
 }
 @media (min-width: 1024px) {
-    
-
     .app__screen{
         height: 90% !important;
     }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'access',
@@ -15,13 +16,16 @@ export class AccessComponent implements OnInit {
   constructor(
     //private PersonService:PersonService, 
     //private session: Session 
+    private router: Router 
     ) { }
 
   ngOnInit() {
     if(!this.currentUser){
+      debugger
       setTimeout(()=>console.clear(), 2000)
     } else{
       console.log(this.currentUser)
+      this.router.navigate(['dashboard', this.currentUser['username'] ])
     }
     
     
@@ -29,7 +33,6 @@ export class AccessComponent implements OnInit {
 
 
   receiveLoggedUser(input: object){
-    debugger
     this.currentUser=input;
   }
 }

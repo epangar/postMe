@@ -19,7 +19,7 @@ export class LoginFormComponent implements OnInit {
   user: any;
 
   @Input() TerryPratchett;
-  // @Output() loggedUserEmitter: EventEmitter<any> = this.session.userEventEmitter;
+  @Output() loggedUserEmitter: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private session: SessionService, public route: Router) {}
 
@@ -31,8 +31,10 @@ export class LoginFormComponent implements OnInit {
     const myLoginData: LoginUser = new LoginUser(this.username, this.password);
     this.session.logIn(myLoginData)
     .pipe(map(()=>{
-      debugger
-      this.session.userEventEmitter.emit(this.session.user)
+      
+      this.user=this.session.user;
+      this.loggedUserEmitter.emit(this.user);
+      this.session.userEventEmitter.emit(this.session.user);
     }))
     .subscribe();
     

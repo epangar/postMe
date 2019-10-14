@@ -29,7 +29,6 @@ export class SessionService {
   }
 
   handleUser(user?: object){
-    debugger
     this.user = user;
     this.userEventEmitter.emit(this.user);
     return this.user;
