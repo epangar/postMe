@@ -6,6 +6,9 @@ import { DisplayTicketsComponent } from '../display-tickets/display-tickets.comp
 import { DisplayPersonsComponent } from '../display-persons/display-persons.component';
 import { ManagePersonsComponent } from '../manage-persons/manage-persons.component';
 import { TicketManagementComponent } from '../ticket-management/ticket-management.component';
+import { CreateTicketsComponent } from '../create-tickets/create-tickets.component';
+import { CreatePersonsComponent } from '../create-persons/create-persons.component';
+
 import { FormsModule }   from '@angular/forms';
 
 
@@ -18,6 +21,8 @@ import { FormsModule }   from '@angular/forms';
         DisplayTicketsComponent, 
         DisplayPersonsComponent,
         ManagePersonsComponent,
+        CreateTicketsComponent,
+        CreatePersonsComponent,
         TicketManagementComponent
     ]
   })

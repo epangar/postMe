@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   constructor(private session: SessionService, public router: Router) { }
 
   ngOnInit() {
+    
     if(!this.session.user){
       this.router.navigate(['/signin'])
     }

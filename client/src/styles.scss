@@ -37,6 +37,12 @@ html, body {
         height: 90% !important;
     }
 }
+@media (min-width: 992px) {
+    .access__displayer{
+        margin-top: 0;
+    }
+    
+}
 @media (min-width: 1024px) {
     .app__screen{
         height: 90% !important;

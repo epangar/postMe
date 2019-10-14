@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-/* import { PersonService } from '../../services/user.service'
-import { SessionService } from 'src/app/services/session.service'; */
+import { PersonService } from '../../services/person.service'
+//import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'manage-persons',
@@ -12,7 +12,7 @@ export class ManagePersonsComponent implements OnInit {
   sentOpenComponent: boolean;
   createUsers: boolean;
   constructor(
-    //private PersonService:PersonService, 
+    private PersonService:PersonService, 
     //private session: Session 
      ) {}
 
@@ -30,6 +30,7 @@ export class ManagePersonsComponent implements OnInit {
   }
 
    getAllUsers(){
-  //  return this.PersonService.getList()
+    this.PersonService.getList().subscribe()
+    this.PersonService.listOfPersonEventEmitter.emit(this.PersonService.listOfPerson)
   }
 }

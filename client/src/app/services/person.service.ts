@@ -9,15 +9,28 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class PersonService {
+  listOfPerson: Array<any>=[];
+  listOfPersonEventEmitter: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private http: HttpClient) { }
 
+  handlePerson(input: any){
+    this.listOfPerson = input.map( e=> {
+      const person = {
+        username: e.username,
+        role: e.role
+      }
+    })
+    return this.listOfPerson;
+  }
   //Create user
   //Get all the users
 
   getList() {
-    return this.http.get(`${environment.BASEURL}/api/phone`)
-      .pipe(map((res) => res));
+    //debugger
+    return this.http.get(`${environment.BASEURL}/api/users`)
+      .pipe(map(res => res))
+      .pipe(map(res => this.handlePerson(res)));
   }
 
   //Get a particular user
