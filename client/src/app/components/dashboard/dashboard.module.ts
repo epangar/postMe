@@ -25,7 +25,7 @@ import { FormsModule }   from '@angular/forms';
         ManagePersonsComponent,
         CreateTicketsComponent,
         CreatePersonsComponent,
-        TicketManagementComponent,
+        TicketManagementComponent, 
         EditPersonComponent,
         EditTicketComponent
     ]

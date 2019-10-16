@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
   currentlyManaging: string = "users";
   currentlyNotManaging: string = "tickets";
 
-  constructor(private session: SessionService, public router: Router) { }
+  constructor(public session: SessionService, public router: Router) { }
 
   ngOnInit() {
     
