@@ -12,7 +12,7 @@ export class ManagePersonsComponent implements OnInit {
   sentOpenComponent: boolean;
   createUsers: boolean;
   listOfPeopleEventEmitter: EventEmitter<any> = new EventEmitter<any>();
-  user: object;
+  user: any;
 
   @Input()
   set currentUser(input){
