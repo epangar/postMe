@@ -1,0 +1,14 @@
+
+<form class="manage-persons__form">
+    <strong class="manage-persons__form-title"><p>User Management</p></strong>
+    <p> Search user <input></p>
+    <button type="button"
+                        (click)="displayCreateUsers()">New user</button>
+    <button type="button" (click)="getAllUsers()">Get All Users</button>
+
+    <create-persons *ngIf="createUsers===true"
+                    [receivedOpenComponent]="sentOpenComponent"
+                    (collapseFormEmit)="receiveCloseForm($event)"></create-persons>
+
+    
+</form>

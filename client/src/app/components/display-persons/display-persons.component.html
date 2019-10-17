@@ -1,0 +1,31 @@
+<table class="table table-striped col-lg-12 display_users__table">
+    <thead>
+        <tr class="row">
+            <th class="col-2 col-md-2 col-lg-2">User Number</th>
+            <th class="col-3 col-md-3 col-lg-3">Name</th>
+            <th class="col-3 col-md-3 col-lg-3">Surname</th>
+            <th class="col-2 col-md-2 col-lg-2">Business</th>
+            <th class="col-1 col-md-2 col-lg-2">Show data</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let person of listOfPersons; index as i" class="row">
+            <td class="col-2 col-md-2 col-lg-2">{{person.userNumber}}</td>
+            <td class="col-3 col-md-3 col-lg-3">{{person.name}}</td>
+            <td class="col-3 col-md-3 col-lg-3">{{person.surname}}</td>
+            <td class="col-2 col-md-2 col-lg-2">{{person.business}}</td>
+            <td class="col-1 col-md-2 col-lg-2"> <button (click)="showPersonData(i)">Show</button></td>
+            <div class="col-lg-12" *ngIf="whoIsDisplayed !== -1 && whoIsDisplayed === i">
+
+                <p><b>Position:</b> {{person.role }}, {{person.business}}</p>
+                <p><b>Location:</b> {{person.city }}, {{person.country}}</p>
+                <p><b>Phone: </b> {{person.phoneNumber}}  <b>Email:</b> {{person.email}} </p>
+                <button>Create ticket</button>
+                <button>See all tickets</button>
+                <button>Edit</button>
+
+            </div>
+        </tr>
+
+    </tbody>
+</table>

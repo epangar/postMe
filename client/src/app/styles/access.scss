@@ -1,0 +1,25 @@
+.access{
+    border:1px solid green;
+    height: 100%;
+
+
+    &__displayer{
+        border: 1px solid #5F9EA0;
+        overflow: scroll;
+        max-height: 50vh;
+        //margin-left: 5px;
+    }
+    
+    &__form {
+        width: 40%;
+        margin-top: 10px;
+        background-color: lightgray;
+    }
+
+    &__managers{
+        border: 1px solid #5F9EA0;
+        background-color: #D3D3D3;
+    }
+
+    
+}

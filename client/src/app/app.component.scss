@@ -1,0 +1,37 @@
+.app{
+
+  &__header{
+    background-color: #5f9ea0;
+    height: 45px;
+    color: white;
+    display: flex;
+    width: 100%;
+    margin-right: 0px;
+    margin-left: 0px;
+
+    &__link{
+      text-decoration: none;
+      color: #fff;
+
+      :hover{
+        text-decoration: none;
+      }
+    }
+
+    &__logout{
+      margin: 0 auto;
+      padding: 1%;
+    }
+  }
+
+  &__footer{
+    color: #fff;
+    background-color: #5F9EA0;
+    padding: 1%;
+  }
+
+  &__screen{
+    height: 100%;
+    background-color: #D3D3D3;
+  }
+}
