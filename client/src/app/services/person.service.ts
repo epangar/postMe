@@ -24,8 +24,22 @@ export class PersonService {
     })
     return this.listOfPerson;
   }
-  //Create user
-  //Get all the users
+
+  //Create person
+
+  createPerson(person: Person) {
+    return this.http.post(`${environment.BASEURL}/api/users`, person)
+      .pipe(map(() => {
+        this.getList().subscribe( r => {
+          
+          console.log(r)
+          this.listOfPerson = r;
+          this.listOfPersonEventEmitter.emit(this.listOfPerson);
+        });        
+      }))
+    };
+  
+  //Get all the people
 
   getList() {
     //debugger
@@ -34,12 +48,16 @@ export class PersonService {
       .pipe(map(res => this.handlePerson(res)));
   }
 
-  //Get a particular user
-  //Update an user
+  //Get a particular person
+  getUser(id){
+
+  }
+
+  //Update a person's data
   editUser(user) {
     return this.http.put(`${environment.BASEURL}/api/users/${user.id}`, user)
       .pipe(map(user => user))
       .pipe(map(user => user));
   }
-  //Delete an user
+  //Delete a person
 }

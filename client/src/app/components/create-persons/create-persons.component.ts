@@ -1,4 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input  } from '@angular/core';
+import { NgModel, NgForm} from '@angular/forms';
+import { PersonService } from '../../services/person.service';
+import { Person } from '../../classes/Person'
 
 @Component({
   selector: 'create-persons',
@@ -8,6 +11,15 @@ import { Component, OnInit, Output, EventEmitter, Input  } from '@angular/core';
 export class CreatePersonsComponent implements OnInit {
   
   isFormOpen: boolean;
+
+  userNumber
+  name
+  surname
+  business
+  country
+  city
+  job
+  phoneNumber
   
 
   @Input() 
@@ -25,7 +37,7 @@ export class CreatePersonsComponent implements OnInit {
    
   @Output()  collapseFormEmit : EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private personService: PersonService) { }
 
   ngOnInit() {
     
@@ -34,6 +46,16 @@ export class CreatePersonsComponent implements OnInit {
   collapse(){
     this.isFormOpen = !this.isFormOpen;
     this.collapseFormEmit.emit(this.isFormOpen);
+  }
+
+  createPerson(person: Person){
+    debugger
+    
+    this.personService.createPerson(person).subscribe()
+  }
+
+  resetForm(myNewPerson: NgForm){
+    myNewPerson.reset()
   }
 
 }

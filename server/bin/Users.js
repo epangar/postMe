@@ -11,6 +11,7 @@ User.collection.drop();
 const users = [
   {
   username : "admin",
+  userNumber: "000001",
   password: "1234",
   role: "admin"
   },

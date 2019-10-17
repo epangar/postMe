@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ListOfPersons } from '../../mocks/MockPersons';
+//import { ListOfPersons } from '../../mocks/MockPersons';
 import { Person } from '../../classes/Person';
 import { PersonService } from '../../services/person.service';
 
@@ -10,16 +10,18 @@ import { PersonService } from '../../services/person.service';
 })
 export class DisplayPersonsComponent implements OnInit {
 
-  listOfPersons: Person[] = ListOfPersons;
+  listOfPersons: Person[];
   whoIsDisplayed: number = -1;
-  // dataIsShowing:boolean;
+  
   constructor(private personService: PersonService) { }
 
   ngOnInit() {
     
-    this.listOfPersons = ListOfPersons.map(user=>user);
+    //this.listOfPersons = ListOfPersons.map(user=>user);
+    this.personService.getList().subscribe(r=>{
+      this.listOfPersons=r;
+    })
     
-    // this.dataIsShowing=false;
    
   }
 
