@@ -12,11 +12,11 @@
             <p class="col-md-12">Password:<input [(ngModel)]="password" name="password"
                     placeholder="Password (required)"></p>
 
-            <button (click)="showSignUp()" type="button">Sign Up</button>
+
             <button (click)="login()" type="button">Login</button>
         </form>
         <div class="offset-3"></div>
     </div>
     <p class="error"> {{ error }} </p>
-    <sign-up *ngIf="signUpIsSelected"></sign-up>
+    
 </div>
