@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SignUpUser } from '../../classes/AccessUser';
 import { SessionService } from "../../services/session.service";
+import { NgModel, NgForm} from '@angular/forms';
 
 
 
@@ -16,16 +17,24 @@ export class SignUpComponent implements OnInit {
   password: string;
   email: string;
   
+  
 
   constructor(private session: SessionService) { }
 
   ngOnInit() {
   }
 
-  signup() {
+  signup(myNewUser: NgForm) {
     const mySignUpUser: SignUpUser = new SignUpUser(this.username, this.email, this.password);
     console.log(mySignUpUser);
+    debugger
+    this.resetForm(myNewUser);
     this.session.signup(mySignUpUser).subscribe();
+    
+  }
+
+  resetForm(myNewUser: NgForm){
+    myNewUser.reset();
   }
 
 }

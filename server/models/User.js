@@ -8,7 +8,11 @@ const userSchema = new Schema(
     password: String,
     name: String,
     surname: String,
-    business: String,
+    business: {
+      type: String,
+      enum: ["Telefónica", "Atento", "Yoigo"],
+      default: "Telefónica"
+    },
     city: String,
     country: String,
     job: String,

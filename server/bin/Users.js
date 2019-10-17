@@ -3,7 +3,12 @@ require("dotenv").config();
 const mongoose = require('mongoose');
 const User = require('../models/User');
 const dbURL = process.env.DBURL;
-mongoose.connect(dbURL);
+
+mongoose.connect(dbURL,  { 
+  useUnifiedTopology: true,
+  useNewUrlParser: true 
+});
+
 User.collection.drop();
 
 
@@ -11,16 +16,32 @@ User.collection.drop();
 const users = [
   {
   username : "admin",
-  userNumber: "000001",
+  userNumber: "C234F",
+  name: "Servicio",
+  surname: "Soporte",
+  business: "Telefónica",
+  city: "Madrid",
+  country: "Spain",
+  job: "Servicio de Soporte",
+  phoneNumber: "123456789",
   password: "1234",
   role: "admin"
   },
   {
   username : "bernard",
+  userNumber: "C124S",
+  name: "Servicio",
+  surname: "Soporte",
+  business: "Telefónica",
+  city: "Madrid",
+  country: "Spain",
+  job: "Servicio de Soporte",
+  phoneNumber: "123456789",
   password: "1234",
-  role: "user"
+  role: "I.T."
   }
 ];
+
 
 User.create(users, (err) => {
   if (err) { throw(err) }

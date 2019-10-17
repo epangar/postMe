@@ -3,20 +3,29 @@
 
   <div class="row--corrected">
 
-    <form class="sign-up__form offset-md-4 col-md-6 row">
+    <form class="sign-up__form offset-md-4 col-md-6 row" #myNewUser="ngForm" >
       <h4>SIGNUP</h4>
-      <label class="col-md-12">Username: <input type="text" [(ngModel)]="username" required name="username"
-          placeholder="Username (required)"></label>
-      <label class="col-md-12">Email: <input type="text" [(ngModel)]="email" required name="email"
-          placeholder="Email (required)"></label>
-      <label class="col-md-12">Password: <input type="text" [(ngModel)]="password" required name="password"
-          placeholder="Password (required)"></label>
+      <label class="col-md-12">Username: <input type="text" 
+        [(ngModel)]="username" 
+        required 
+        name="username"
+        placeholder="Username (required)"></label>
+      <label class="col-md-12">Email: <input type="text" 
+        [(ngModel)]="email" 
+        required 
+        name="email"
+        placeholder="Email (required)"></label>
+      <label class="col-md-12">Password: <input type="text" 
+        [(ngModel)]="password" 
+        required 
+        name="password"
+        placeholder="Password (required)"></label>
 
       <p class="sign-up__form-errors">
         <!-- {{}} -->
       </p>
 
-      <button  type="submit" (click)="signup()"> Signup </button>
+      <button  type="submit" (click)="signup(myNewUser)"> Signup </button>
 
     </form>
   </div>
