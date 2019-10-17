@@ -17,6 +17,9 @@ export class LoginFormComponent implements OnInit {
   password: string;
   error: string;
   user: any;
+  signUpIsSelected: boolean;
+  
+
 
   @Input() TerryPratchett;
   @Output() loggedUserEmitter: EventEmitter<any> = new EventEmitter<any>();

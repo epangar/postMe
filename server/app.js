@@ -15,7 +15,10 @@ const MongoStore = require("connect-mongo")(session);
 
 mongoose.Promise= Promise;
 mongoose
-  .connect(process.env.DBURL)
+  .connect(process.env.DBURL,  { 
+    useUnifiedTopology: true,
+    useNewUrlParser: true 
+  } )
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
