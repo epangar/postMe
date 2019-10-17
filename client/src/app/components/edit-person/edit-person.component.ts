@@ -11,30 +11,30 @@ export class EditPersonComponent implements OnInit {
   
   currentPerson: Person;
 
-  userNumber
-  name
-  role
-  surname
-  business
-  country
-  city
-  job
-  phoneNumber
+  userNumber: string;
+  name: string;
+  role: string;
+  surname: string;
+  business: string;
+  country: string;
+  city: string;
+  job: string;
+  phoneNumber: string;
 
 
   @Input() 
   
   set receivedPerson(sentPerson: Person){
     this.currentPerson=sentPerson;
-    this.currentPerson['role']=sentPerson['role']
-    this.currentPerson['userNumber'] = sentPerson['userNumber']
-    this.currentPerson['name'] = sentPerson['name']
-    this.currentPerson['surname'] = sentPerson['surname']
-    this.currentPerson['business'] = sentPerson['business']
-    this.currentPerson['country'] = sentPerson['country']
-    this.currentPerson['city'] = sentPerson['city']
-    this.currentPerson['job'] = sentPerson['job']
-    this.currentPerson['phoneNumber'] = sentPerson['phoneNumber']
+    this.currentPerson['role']=this.role;
+    this.currentPerson['userNumber'] = this.userNumber;
+    this.currentPerson['name'] = this.name;
+    this.currentPerson['surname'] = this.surname;
+    this.currentPerson['business'] = this.business;
+    this.currentPerson['country'] = this.country;
+    this.currentPerson['city'] = this.city;
+    this.currentPerson['job'] = this.job;
+    this.currentPerson['phoneNumber'] = this.phoneNumber;
 
   }
 
@@ -42,18 +42,18 @@ export class EditPersonComponent implements OnInit {
       return this.currentPerson;
   }
 
-  @Output() dataEmitter: EventEmitter<number> = new EventEmitter<number>();
+  @Output() dataEmitter: EventEmitter<Person> = new EventEmitter<Person>();
 
   constructor() { }
 
   ngOnInit() {
     
-    console.log(this.receivedPerson)
+    console.log(this.currentPerson)
+    this.loadData();
   }
 
   loadData(){
-    //this.fullData = "Math.floor(Math.random()*100)";
             
-    //this.dataEmitter.emit(this.randomNumber)
+    this.dataEmitter.emit(this.currentPerson)
   }
 }

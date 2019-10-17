@@ -27,7 +27,8 @@
 
             </div>
             <edit-person *ngIf="displayEditUserData && whoIsDisplayed === i"
-                        [receivedPerson]="person"></edit-person>
+                        [receivedPerson]="person"
+                        (dataEmitter)="editedPerson"></edit-person>
         </tr>
 
     </tbody>
