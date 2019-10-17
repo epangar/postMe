@@ -3,6 +3,7 @@
     <strong class="manage-persons__form-title"><p>User Management</p></strong>
     <p> Search user <input></p>
     <button type="button"
+                        *ngIf="user.role!==user"
                         (click)="displayCreateUsers()">New user</button>
     <button type="button" (click)="getAllUsers()">Get All Users</button>
 

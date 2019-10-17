@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 import { PersonService } from '../../services/person.service'
 //import { SessionService } from 'src/app/services/session.service';
 
@@ -12,11 +12,24 @@ export class ManagePersonsComponent implements OnInit {
   sentOpenComponent: boolean;
   createUsers: boolean;
   listOfPeopleEventEmitter: EventEmitter<any> = new EventEmitter<any>();
+  user: object;
+
+  @Input()
+  set currentUser(input){
+    debugger
+    this.user=input;
+  }
+
+  get currentUser(){
+    return this.user;
+  }
+  
   constructor(private PersonService:PersonService, ) {}
 
   ngOnInit() {
     this.createUsers=false;
     this.getAllUsers();
+    debugger
   }
 
   displayCreateUsers(){

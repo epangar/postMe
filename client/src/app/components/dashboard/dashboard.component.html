@@ -14,9 +14,11 @@
     <div class="row--corrected">
         <div class="access__managers col-md-12 col-lg-4">
             <manage-persons *ngIf="currentlyManaging==='users'" 
-                        class="manage-persons"></manage-persons>
+                        class="manage-persons"
+                        [currentUser]="currentUser"></manage-persons>
             <manage-tickets *ngIf="currentlyManaging==='tickets'" 
-                        class="manage-tickets"></manage-tickets>
+                        class="manage-tickets"
+                        [currentUser]="currentUser"></manage-tickets>
         </div>
     
         <div class="access__displayer col-md-12 col-lg-8">
@@ -26,7 +28,8 @@
                 </display-persons>
             </div>
             <div>
-                <display-tickets *ngIf="currentlyManaging==='tickets'"></display-tickets>
+                <display-tickets *ngIf="currentlyManaging==='tickets'"
+                [currentUser]="currentUser"></display-tickets>
             </div>
         </div>
     </div>

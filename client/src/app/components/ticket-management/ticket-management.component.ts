@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'manage-tickets',
@@ -9,6 +9,18 @@ export class TicketManagementComponent implements OnInit {
 
   sentOpenComponent: boolean;
   createTickets: boolean;
+  user: any;
+
+  @Input()
+  set currentUser(input){
+    debugger
+    this.user=input;
+  }
+
+  get currentUser(){
+    return this.user;
+  }
+
   constructor() { }
 
   ngOnInit() {

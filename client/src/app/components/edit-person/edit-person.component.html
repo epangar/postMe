@@ -1,1 +1,58 @@
-<p>edit-person works!</p>
+<form class="edit-persons__form" #editedPerson="ngForm" (submit)="editPerson(editedPerson.value)">
+      
+    <input required 
+            class="col-md-6 edit-persons__input" 
+            type="text"    
+            name="userNumber"
+            [(ngModel)] = "currentPerson.userNumber" 
+            placeholder="userNumber">
+    <input required 
+            class="col-md-6 edit-persons__input" 
+            type="text"    
+            name="name"
+            [(ngModel)] = "currentPerson.name"   
+            placeholder="name">
+    <input required 
+            class="col-md-6 edit-persons__input" 
+            type="text"    
+            name="surname"
+            [(ngModel)] = "currentPerson.surname"    
+            placeholder="surname">
+    <input required 
+            class="col-md-6 edit-persons__input" 
+            type="text"    
+            name="business"
+            [(ngModel)] = "currentPerson.business"   
+            placeholder="business">
+    <input required 
+            class="col-md-6 edit-persons__input" 
+            type="text"    
+            name="country"
+            [(ngModel)] = "currentPerson.country"    
+            placeholder="country">
+    <input required 
+            class="col-md-6 edit-persons__input" 
+            type="text"    
+            name="city"
+            [(ngModel)] = "currentPerson.city"   
+            placeholder="city">
+    <input required 
+            class="col-md-6 edit-persons__input" 
+            type="text"    
+            name="job"
+            [(ngModel)] = "currentPerson.job"    
+            placeholder="job">
+    <input required 
+            class="col-md-6 edit-persons__input" 
+            type="text"    
+            name="phoneNumber"
+            [(ngModel)] = "currentPerson.phoneNumber"    
+            placeholder="phoneNumber">
+    
+    
+    <div class="col-md-12">
+        <button  type="reset" (click)="resetForm()">Reset form</button>
+        <button  type="button"  (click)="collapse()">Cancel</button>
+        <button  type="submit" >Save changes</button>
+    </div>
+</form>

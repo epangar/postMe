@@ -20,11 +20,14 @@
                 <p><b>Position:</b> {{person.role }}, {{person.business}}</p>
                 <p><b>Location:</b> {{person.city }}, {{person.country}}</p>
                 <p><b>Phone: </b> {{person.phoneNumber}}  <b>Email:</b> {{person.email}} </p>
+                <p> {{person.username}}</p>
                 <button>Create ticket</button>
                 <button>See all tickets</button>
-                <button>Edit data</button>
+                <button (click)="displayEditUserData=!displayEditUserData">Edit data</button>
 
             </div>
+            <edit-person *ngIf="displayEditUserData && whoIsDisplayed === i"
+                        [receivedPerson]="person"></edit-person>
         </tr>
 
     </tbody>

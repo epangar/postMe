@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
   
   currentlyManaging: string = "users";
   currentlyNotManaging: string = "tickets";
+  currentUser = this.session.user;
 
   constructor(public session: SessionService, public router: Router) { }
 

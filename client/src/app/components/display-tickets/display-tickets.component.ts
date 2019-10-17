@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ListOfTickets } from '../../mocks/MockTickets';
 import { Ticket } from '../../classes/Ticket';
 
@@ -12,6 +12,19 @@ export class DisplayTicketsComponent implements OnInit {
 
   listOfTickets: Ticket[] = ListOfTickets;
   whichTicketIsDisplayed: number = -1;
+
+  user: any;
+
+  @Input()
+  set currentUser(input){
+    debugger
+    this.user=input;
+  }
+
+  get currentUser(){
+    return this.user;
+  }
+
   constructor() { }
 
   ngOnInit() {
