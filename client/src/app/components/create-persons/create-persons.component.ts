@@ -49,7 +49,7 @@ export class CreatePersonsComponent implements OnInit {
   }
 
   createPerson(person: Person){
-    debugger
+    
     
     this.personService.createPerson(person).subscribe()
   }

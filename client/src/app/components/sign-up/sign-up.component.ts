@@ -27,7 +27,7 @@ export class SignUpComponent implements OnInit {
   signup(myNewUser: NgForm) {
     const mySignUpUser: SignUpUser = new SignUpUser(this.username, this.email, this.password);
     console.log(mySignUpUser);
-    debugger
+    
     this.resetForm(myNewUser);
     this.session.signup(mySignUpUser).subscribe();
     

@@ -17,7 +17,7 @@ export class DisplayTicketsComponent implements OnInit {
 
   @Input()
   set currentUser(input){
-    debugger
+    
     this.user=input;
   }
 

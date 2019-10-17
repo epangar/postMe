@@ -13,7 +13,6 @@ export class TicketManagementComponent implements OnInit {
 
   @Input()
   set currentUser(input){
-    debugger
     this.user=input;
   }
 

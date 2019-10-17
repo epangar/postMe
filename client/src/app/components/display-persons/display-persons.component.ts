@@ -19,7 +19,7 @@ export class DisplayPersonsComponent implements OnInit {
 
   @Input()
   set currentUser(input){
-    debugger
+    
     this.user=input;
   }
 

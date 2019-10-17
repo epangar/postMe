@@ -16,7 +16,7 @@ export class ManagePersonsComponent implements OnInit {
 
   @Input()
   set currentUser(input){
-    debugger
+    
     this.user=input;
   }
 
@@ -29,7 +29,7 @@ export class ManagePersonsComponent implements OnInit {
   ngOnInit() {
     this.createUsers=false;
     this.getAllUsers();
-    debugger
+    
   }
 
   displayCreateUsers(){

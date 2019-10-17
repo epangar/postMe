@@ -47,7 +47,7 @@ export class EditPersonComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    debugger
+    
     console.log(this.receivedPerson)
   }
 
