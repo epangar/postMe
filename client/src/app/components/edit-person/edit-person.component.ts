@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Person } from '../../classes/Person';
+import { PersonService } from '../../services/person.service';
 
 @Component({
   selector: 'edit-person',
@@ -25,11 +26,11 @@ export class EditPersonComponent implements OnInit {
   @Input() 
   
   set receivedPerson(sentPerson: Person){
-    debugger
+    
     console.log(sentPerson)
     
     this.currentPerson=sentPerson;
-    this.currentPerson['role']=this.role;
+    //this.currentPerson['role']=this.role;
     this.currentPerson['userNumber'] = this.userNumber;
     this.currentPerson['name'] = this.name;
     this.currentPerson['surname'] = this.surname;
@@ -47,7 +48,7 @@ export class EditPersonComponent implements OnInit {
 
   @Output() dataEmitter: EventEmitter<Person> = new EventEmitter<Person>();
 
-  constructor() { }
+  constructor(private personService: PersonService) { }
 
   ngOnInit() {
     
@@ -58,5 +59,9 @@ export class EditPersonComponent implements OnInit {
   loadData(){
             
     this.dataEmitter.emit(this.currentPerson)
+  }
+
+  editPerson(input: object){
+    this.personService.editUser(input)
   }
 }

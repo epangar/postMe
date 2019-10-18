@@ -17,6 +17,7 @@ export class DisplayPersonsComponent implements OnInit {
   editedPerson: Person;
   
   user: any;
+  dataIsShowing: boolean;
 
   @Input()
   set currentUser(input){
@@ -34,25 +35,28 @@ export class DisplayPersonsComponent implements OnInit {
     
     //this.listOfPersons = ListOfPersons.map(user=>user);
     this.personService.getList().subscribe(r=>{
+      debugger
       this.listOfPersons=r;
       console.log(this.listOfPersons)
     })
     this.displayEditUserData= false;
+    this.dataIsShowing = false;
     
-    
-    
-   
+
   }
 
   showData(){
-    // this.dataIsShowing=!this.dataIsShowing;
+    debugger
+    this.dataIsShowing=!this.dataIsShowing;
   }
 
   showPersonData(i: number){
+    debugger
     if(this.whoIsDisplayed !==-1 ){
       this.whoIsDisplayed = -1;
     } 
     
+    this.showData();
     this.whoIsDisplayed = i;
     
     this.sentPerson=this.listOfPersons[i];
@@ -60,7 +64,9 @@ export class DisplayPersonsComponent implements OnInit {
   }
 
   editOpen(){
-
+    debugger
+    
+    this.displayEditUserData=!this.displayEditUserData
   }
 
   editUser(user){

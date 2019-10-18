@@ -15,13 +15,7 @@ export class PersonService {
   constructor(private http: HttpClient) { }
 
   handlePerson(input: any){
-    this.listOfPerson = input.map( e=> {
-      const person = {
-        username: e.username,
-        role: e.role
-      };
-      return person;
-    })
+    this.listOfPerson = input.map( (e: Person)=> e)
     return this.listOfPerson;
   }
 
@@ -57,7 +51,7 @@ export class PersonService {
   editUser(user) {
     return this.http.put(`${environment.BASEURL}/api/users/${user.id}`, user)
       .pipe(map(user => user))
-      .pipe(map(user => user));
+      
   }
   //Delete a person
 }
