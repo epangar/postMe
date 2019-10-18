@@ -25,6 +25,9 @@ export class EditPersonComponent implements OnInit {
   @Input() 
   
   set receivedPerson(sentPerson: Person){
+    debugger
+    console.log(sentPerson)
+    
     this.currentPerson=sentPerson;
     this.currentPerson['role']=this.role;
     this.currentPerson['userNumber'] = this.userNumber;
