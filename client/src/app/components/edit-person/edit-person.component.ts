@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Person } from '../../classes/Person';
+import { Component, OnInit, Output, EventEmitter, Input  } from '@angular/core';
+import { NgModel, NgForm} from '@angular/forms';
 import { PersonService } from '../../services/person.service';
+import { Person } from '../../classes/Person'
 
 @Component({
   selector: 'edit-person',
@@ -8,7 +9,7 @@ import { PersonService } from '../../services/person.service';
   styleUrls: ['../../styles/edit-person.scss']
 })
 export class EditPersonComponent implements OnInit {
-  
+  isFormOpen: boolean;
   
   currentPerson: Person;
 
@@ -47,6 +48,7 @@ export class EditPersonComponent implements OnInit {
   }
 
   @Output() dataEmitter: EventEmitter<Person> = new EventEmitter<Person>();
+  @Output()  collapseFormEmit : EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private personService: PersonService) { }
 
@@ -63,5 +65,14 @@ export class EditPersonComponent implements OnInit {
 
   editPerson(input: object){
     this.personService.editUser(input)
+  }
+
+  resetForm(myNewPerson: NgForm){
+    myNewPerson.reset()
+  }
+
+  collapse(){
+    this.isFormOpen = !this.isFormOpen;
+    this.collapseFormEmit.emit(this.isFormOpen);
   }
 }
