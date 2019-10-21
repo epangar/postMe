@@ -53,6 +53,7 @@ export class EditPersonComponent implements OnInit {
 
   constructor(private personService: PersonService) { 
     // debugger
+    this.collapse();
   }
 
   ngOnInit() {
@@ -66,8 +67,9 @@ export class EditPersonComponent implements OnInit {
     this.dataEmitter.emit(this.currentPerson)
   }
 
-  editPerson(input: object){
-    this.personService.editUser(input)
+  editPerson(){
+    debugger
+    this.personService.editUser(this.currentPerson)
   }
 
   resetForm(myNewPerson: NgForm){

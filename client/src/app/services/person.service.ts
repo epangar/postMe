@@ -43,15 +43,23 @@ export class PersonService {
   }
 
   //Get a particular person
-  getUser(id){
-
+  getUser(user){
+    debugger
+    return this.http.put(`${environment.BASEURL}/api/users/${user._id}`, user)
+    .pipe(map((res) => res));
   }
 
   //Update a person's data
-  editUser(user) {
-    return this.http.put(`${environment.BASEURL}/api/users/${user.id}`, user)
+  editUser(user)  :Observable<any> {
+    debugger
+    return this.http.put(`${environment.BASEURL}/api/users/${user._id}`, user)
       .pipe(map(user => user))
-      
   }
+
+
   //Delete a person
+  removeUser(user) {
+    return this.http.delete(`${environment.BASEURL}/api/users/${user._id}`)
+      .pipe(map((res) => res));
+  }
 }

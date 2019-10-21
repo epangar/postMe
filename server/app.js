@@ -96,7 +96,7 @@ app.use("/api/tickets", ticket);
 
 
 app.use(function(req, res) {
-  res.sendfile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 

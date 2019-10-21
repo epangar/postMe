@@ -13,15 +13,18 @@ export class AccessComponent implements OnInit {
   signUpIsSelected: boolean=false;
   currentUser: object;
   currentUserId: string;
+  amILogged: boolean;
   
 
   constructor(
     //private PersonService:PersonService, 
     private session: SessionService,
     private router: Router 
-    ) { }
+    ) {     }
 
   ngOnInit() {
+    this.session.isLoggedIn()
+
     if(!this.currentUser){
       //debugger
       setTimeout(()=>console.clear(), 2000)

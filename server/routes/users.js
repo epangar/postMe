@@ -31,7 +31,8 @@ router.get("/:id", (req, res, next) => {
 // Update
 router.put("/:id", (req, res, next) => {
   const updates = _.pick(req.body, fields);
-
+  console.log(updates)
+  
   User.findByIdAndUpdate(req.params.id, updates, { new: true })
     .then(list => res.json(list))
     .catch(e => next(e));

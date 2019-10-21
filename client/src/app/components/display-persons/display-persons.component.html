@@ -16,7 +16,8 @@
             <td class="col-2 col-md-2 col-lg-2">{{person.business}}</td>
             <td class="col-1 col-md-2 col-lg-2"> 
                 <button (click)="showPersonData(i)">
-                    <span>Show</span>
+                    <span *ngIf="whoIsDisplayed !== i">Show</span>
+                    <span *ngIf="whoIsDisplayed === i">Close</span>
                 </button>
             </td>
             <div class="row" *ngIf="dataIsShowing">
@@ -24,6 +25,7 @@
     
                     <p><b>Position:</b> {{person.role }}, {{person.business}}</p>
                     <p><b>Location:</b> {{person.city }}, {{person.country}}</p>
+                    <p>{{person._id}}</p>
                     <p><b>Phone: </b> {{person.phoneNumber}}  <b>Email:</b> {{person.email}} </p>
                     <p> {{person.username}} {{i}}</p>
                     <button>Create ticket</button>

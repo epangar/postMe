@@ -30,7 +30,7 @@ export class DisplayPersonsComponent implements OnInit {
   }
   
   constructor(private personService: PersonService) { 
-
+    
     this.personService.getList().subscribe(r=>{
       this.listOfPersons=r;
       console.log(this.listOfPersons)
@@ -50,7 +50,7 @@ export class DisplayPersonsComponent implements OnInit {
   }
 
   showPersonData(i: number){
-    debugger
+    
     if(this.whoIsDisplayed !==-1 ){
       this.whoIsDisplayed = -1;
     } else if(this.whoIsDisplayed ===-1 ){
@@ -64,14 +64,13 @@ export class DisplayPersonsComponent implements OnInit {
     }
     
     this.showData();
-    this.whoIsDisplayed = i;
     
     this.sentPerson=this.listOfPersons[i];
     
   }
 
   editOpen(person){
-    debugger
+    // debugger
     this.sentPerson=person;
     this.displayEditUserData=!this.displayEditUserData;
   }
