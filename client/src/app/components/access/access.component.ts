@@ -12,6 +12,7 @@ export class AccessComponent implements OnInit {
   // accessIsClicked: boolean=false;
   signUpIsSelected: boolean=false;
   currentUser: object;
+  currentUserId: string;
   
 
   constructor(
@@ -22,18 +23,25 @@ export class AccessComponent implements OnInit {
 
   ngOnInit() {
     if(!this.currentUser){
-      // debugger
+      //debugger
       setTimeout(()=>console.clear(), 2000)
     } else{
-      console.log(this.currentUser)
-      this.router.navigate(['dashboard', this.currentUser['username'] ])
+      this.goToDashBoard();
     }
     
     
   }
 
 
-  receiveLoggedUser(input: object){
+  receiveLoggedUser(input){
+    debugger
     this.currentUser=input;
+    this.currentUserId=input['_id']
+  }
+
+  goToDashBoard():void{
+    debugger
+    console.log(this.currentUser)
+    this.router.navigate(['/dashboard', this.currentUserId ])
   }
 }
