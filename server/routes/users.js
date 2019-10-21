@@ -9,7 +9,7 @@ const fields = Object.keys(_.omit(User.schema.paths, ["__v", "_id"]));
 // Retrive ALL
 router.get("/", (req, res, next) => {
   User.find()
-    .then(lists => res.json(lists))
+    .then(listOfUsers => res.json(listOfUsers))
     .catch(e => next(e));
 });
 
@@ -32,7 +32,7 @@ router.get("/:id", (req, res, next) => {
 router.put("/:id", (req, res, next) => {
   const updates = _.pick(req.body, fields);
   console.log(updates)
-  
+
   User.findByIdAndUpdate(req.params.id, updates, { new: true })
     .then(list => res.json(list))
     .catch(e => next(e));
