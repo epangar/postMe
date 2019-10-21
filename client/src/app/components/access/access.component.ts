@@ -26,6 +26,7 @@ export class AccessComponent implements OnInit {
       //debugger
       setTimeout(()=>console.clear(), 2000)
     } else{
+      debugger
       this.goToDashBoard();
     }
     
@@ -33,8 +34,8 @@ export class AccessComponent implements OnInit {
   }
 
 
-  receiveLoggedUser(input){
-    debugger
+  receiveLoggedUser(input: object){
+    //debugger
     this.currentUser=input;
     this.currentUserId=input['_id']
   }
