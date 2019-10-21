@@ -29,24 +29,23 @@ export class DisplayPersonsComponent implements OnInit {
     return this.user;
   }
   
-  constructor(private personService: PersonService) { }
+  constructor(private personService: PersonService) { 
 
-  ngOnInit() {
-    
-    //this.listOfPersons = ListOfPersons.map(user=>user);
     this.personService.getList().subscribe(r=>{
-      debugger
       this.listOfPersons=r;
       console.log(this.listOfPersons)
     })
+
     this.displayEditUserData= false;
     this.dataIsShowing = false;
-    
+  }
 
+  ngOnInit() {
+   
   }
 
   showData(){
-    debugger
+    // debugger
     this.dataIsShowing=!this.dataIsShowing;
   }
 
@@ -54,7 +53,15 @@ export class DisplayPersonsComponent implements OnInit {
     debugger
     if(this.whoIsDisplayed !==-1 ){
       this.whoIsDisplayed = -1;
-    } 
+    } else if(this.whoIsDisplayed ===-1 ){
+      this.whoIsDisplayed = i;
+    }
+    
+    if(this.displayEditUserData===true){
+      this.displayEditUserData=false;
+    }else {
+      this.displayEditUserData=true;
+    }
     
     this.showData();
     this.whoIsDisplayed = i;
@@ -63,10 +70,10 @@ export class DisplayPersonsComponent implements OnInit {
     
   }
 
-  editOpen(){
+  editOpen(person){
     debugger
-    
-    this.displayEditUserData=!this.displayEditUserData
+    this.sentPerson=person;
+    this.displayEditUserData=!this.displayEditUserData;
   }
 
   editUser(user){

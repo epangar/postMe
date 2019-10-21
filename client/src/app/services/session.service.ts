@@ -68,7 +68,7 @@ export class SessionService {
   }
   
   navigateTo=(user: object)=> {
-    debugger
+    // debugger
     if(user){
       this.route.navigate(['dashboard', user['_id'] ])
     }

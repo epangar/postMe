@@ -31,15 +31,16 @@ export class EditPersonComponent implements OnInit {
     console.log(sentPerson)
     
     this.currentPerson=sentPerson;
+    // debugger
     //this.currentPerson['role']=this.role;
-    this.currentPerson['userNumber'] = this.userNumber;
-    this.currentPerson['name'] = this.name;
-    this.currentPerson['surname'] = this.surname;
-    this.currentPerson['business'] = this.business;
-    this.currentPerson['country'] = this.country;
-    this.currentPerson['city'] = this.city;
-    this.currentPerson['job'] = this.job;
-    this.currentPerson['phoneNumber'] = this.phoneNumber;
+    // this.currentPerson['userNumber'] = this.userNumber;
+    // this.currentPerson['name'] = this.name;
+    // this.currentPerson['surname'] = this.surname;
+    // this.currentPerson['business'] = this.business;
+    // this.currentPerson['country'] = this.country;
+    // this.currentPerson['city'] = this.city;
+    // this.currentPerson['job'] = this.job;
+    // this.currentPerson['phoneNumber'] = this.phoneNumber;
 
   }
 
@@ -50,7 +51,9 @@ export class EditPersonComponent implements OnInit {
   @Output() dataEmitter: EventEmitter<Person> = new EventEmitter<Person>();
   @Output()  collapseFormEmit : EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private personService: PersonService) { }
+  constructor(private personService: PersonService) { 
+    // debugger
+  }
 
   ngOnInit() {
     

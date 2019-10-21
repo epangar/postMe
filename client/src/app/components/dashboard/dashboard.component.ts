@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   currentlyManaging: string = "users";
   currentlyNotManaging: string = "tickets";
   currentUser = this.session.user;
-  person: object;
+  currentUserID: object;
 
   constructor(public session: SessionService, 
               public router: Router, 
@@ -25,10 +25,10 @@ export class DashboardComponent implements OnInit {
     if(!this.session.user){
       this.router.navigate(['/signin'])
     } else {
-      this.route.params
-      .subscribe((params)=>{
-        debugger
-        this.person = (params['id']);
+      this.route.params.subscribe((params)=>{
+        //debugger
+        this.currentUserID = (params['id']);
+
 
       });
     }

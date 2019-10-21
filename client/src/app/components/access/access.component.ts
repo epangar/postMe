@@ -26,7 +26,7 @@ export class AccessComponent implements OnInit {
       //debugger
       setTimeout(()=>console.clear(), 2000)
     } else{
-      debugger
+      //debugger
       this.goToDashBoard();
     }
     
@@ -41,7 +41,7 @@ export class AccessComponent implements OnInit {
   }
 
   goToDashBoard():void{
-    debugger
+    //debugger
     console.log(this.currentUser)
     this.router.navigate(['/dashboard', this.currentUserId ])
   }
