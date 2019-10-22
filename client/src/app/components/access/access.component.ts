@@ -24,14 +24,13 @@ export class AccessComponent implements OnInit {
 
   ngOnInit() {
     this.session.isLoggedIn()
-
-    if(!this.currentUser){
+    console.log(this.currentUser)
+    if(this.currentUser){
       //debugger
-      setTimeout(()=>console.clear(), 2000)
-    } else{
-      //debugger
+      //setTimeout(()=>console.clear(), 2000)
       this.goToDashBoard();
-    }
+    } 
+    
     
     
   }

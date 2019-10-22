@@ -67,13 +67,15 @@ export class EditPersonComponent implements OnInit {
     this.dataEmitter.emit(this.currentPerson)
   }
 
-  editPerson(){
+  editPerson(myEditedPerson){
     debugger
+    console.log(myEditedPerson)
+    console.log(this.currentPerson)
     this.personService.editUser(this.currentPerson)
   }
 
-  resetForm(myNewPerson: NgForm){
-    myNewPerson.reset()
+  resetForm(myEditedPerson: NgForm){
+    myEditedPerson.reset()
   }
 
   collapse(){
