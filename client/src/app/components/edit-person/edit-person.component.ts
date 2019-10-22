@@ -67,9 +67,9 @@ export class EditPersonComponent implements OnInit {
     this.dataEmitter.emit(this.currentPerson)
   }
 
-  editPerson(myEditedPerson){
+  editPerson(){
     debugger
-    console.log(myEditedPerson)
+    console.log()
     console.log(this.currentPerson)
     this.personService.editUser(this.currentPerson)
   }

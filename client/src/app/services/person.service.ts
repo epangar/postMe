@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpResponse } from "@angular/common/http";
-import { Observable, Subject } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map, catchError, take } from 'rxjs/operators';
 import { Ticket } from '../classes/Ticket';
 import { Person } from '../classes/Person';
@@ -12,13 +12,17 @@ export class PersonService {
   listOfPerson: Array<any>=[];
   listOfPersonEventEmitter: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public sessionService: SessionService) { 
+    this.getList().subscribe(l => this.listOfPerson = l);
+  }
 
   handlePerson(input: any){
     this.listOfPerson = input.map( (e: Person)=> e)
     return this.listOfPerson;
   }
-
+  handleError(e): Observable<any> {
+    return throwError(e);
+  }
   //Create person
 
   createPerson(person: Person) {
@@ -45,15 +49,18 @@ export class PersonService {
   //Get a particular person
   getUser(user){
     debugger
+    
     return this.http.put(`${environment.BASEURL}/api/users/${user._id}`, user)
     .pipe(map((res) => res));
   }
 
   //Update a person's data
-  editUser(user)  :Observable<any> {
+  editUser(user) : Observable<any> {
     debugger
-    return this.http.put(`${environment.BASEURL}/api/users/${user._id}`, user)
+    console.log(`${environment.BASEURL}/api/users/${user._id}`)
+    return this.http.patch(`${environment.BASEURL}/api/users/${user._id}`, user)
       .pipe(map(user => user))
+      .pipe(catchError((e: any) => this.handleError(e)));
   }
 
 

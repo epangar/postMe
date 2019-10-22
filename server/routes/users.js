@@ -22,19 +22,34 @@ router.post("/", (req, res, next) => {
 });
 
 // Retrive DETAIL
-router.get("/:id", (req, res, next) => {
+router.get('/:id', (req, res, next) => {
   User.findById(req.params.id)
     .then(list => res.json(list))
     .catch(e => next(e));
 });
 
 // Update
-router.put("/:id", (req, res, next) => {
+/* router.put("/:id", (req, res, next) => {
   const updates = _.pick(req.body, fields);
   console.log(updates)
 
   User.findByIdAndUpdate(req.params.id, updates, { new: true })
     .then(list => res.json(list))
+    .catch(e => next(e));
+}); */
+
+
+// Update
+router.patch('/:id', (req, res, next) => {
+    console.log("Entra en put!!!")
+    console.log(req.params.id)
+    const {id} = req.params;
+    const object = _.pickBy(req.body, (e,k) => paths.includes(k));
+    const updates = _.pickBy(object, _.identity);
+    console.log(id, object, updates);
+
+  User.findByIdAndUpdate(id, {  $set:{updates} } , { new: true })
+    .then(obj => res.status(200).json({status:'updated',obj}) )
     .catch(e => next(e));
 });
 
