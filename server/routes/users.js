@@ -40,7 +40,7 @@ router.get('/:id', (req, res, next) => {
 
 
 // Update
-router.patch('/:id', (req, res, next) => {
+router.put('/:id', (req, res, next) => {
     console.log("Entra en put!!!")
     console.log(req.params.id)
     const {id} = req.params;
