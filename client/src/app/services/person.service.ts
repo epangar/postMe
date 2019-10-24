@@ -57,9 +57,8 @@ export class PersonService {
 
   //Update a person's data
   editUser(user)  {
-    debugger
-    console.log(`${environment.BASEURL}/api/users/${user._id}/update`)
-    return this.http.put(`${environment.BASEURL}/api/users/${user._id}/update`, user)
+    console.log(`${environment.BASEURL}/api/users/${user._id}`)
+    return this.http.put(`${environment.BASEURL}/api/users/${user._id}`, user)
       .pipe(map(user => user))
       .pipe(catchError((e: any) => this.handleError(e)));
   }

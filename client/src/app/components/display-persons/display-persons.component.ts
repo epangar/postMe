@@ -57,11 +57,9 @@ export class DisplayPersonsComponent implements OnInit {
       this.whoIsDisplayed = i;
     }
     
-    if(this.displayEditUserData===true){
-      this.displayEditUserData=false;
-    }else {
-      this.displayEditUserData=true;
-    }
+    
+    this.displayEditUserData=false;
+    
     
     this.showData();
     
