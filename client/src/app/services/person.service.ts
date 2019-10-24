@@ -51,7 +51,7 @@ export class PersonService {
   getUser(user){
     debugger
     
-    return this.http.put(`${environment.BASEURL}/api/users/${user._id}`, user)
+    return this.http.get(`${environment.BASEURL}/api/users/${user._id}`, user)
     .pipe(map((res) => res));
   }
 

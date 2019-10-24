@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpResponse } from "@angular/common/http";
-import { Observable, Subject } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map, catchError, take } from 'rxjs/operators';
 import { Ticket } from '../classes/Ticket';
 import { Person } from '../classes/Person';
@@ -11,10 +11,20 @@ import { environment } from '../../environments/environment';
 export class TicketService {
   user: Person;
   tickets: any;
+  listOfTicket: Ticket[];
   ticketEventEmitter: EventEmitter<any> = new EventEmitter;
 
   constructor(public http: HttpClient, private session: SessionService) { 
-    this.getAllTickets(this.session.user._id).subscribe(l => this.tickets = l);
+    this.getAllTickets().subscribe(l => this.tickets = l);
+  }
+
+  handleTicket(input: any){
+    this.listOfTicket = input.map( (e: Ticket)=> e)
+    return this.listOfTicket;
+  }
+  handleError(e): Observable<any> {
+    console.log(e)
+    return throwError(e);
   }
 
   //Create ticket
@@ -30,8 +40,8 @@ export class TicketService {
   }
 
   //Get all the tickets
-  getAllTickets(id){
-    return this.http.get(`${environment.BASEURL}/api/tickets/${id}`)
+  getAllTickets(id?){
+    return this.http.get(`${environment.BASEURL}/api/tickets/`)
     .pipe(map((res) => {
       this.ticketEventEmitter.emit(this.tickets);
       //this.lists = res.json();
@@ -39,10 +49,29 @@ export class TicketService {
     }));
   }
 
+  getMyTickets(id){
+    
+  }
+
   //Get a particular ticket
-  getTicket(){}
+  getTicket(ticket){
+    return this.http.get(`${environment.BASEURL}/api/tickets/${ticket._id}`, ticket)
+    .pipe(map((res) => res));
+  }
+
+
   //Update a ticket
-  updateTicket(){}
+  updateTicket(ticket){
+    return this.http.put(`${environment.BASEURL}/api/tickets/${ticket._id}`, ticket)
+      .pipe(map(ticket => ticket))
+      .pipe(catchError((e: any) => this.handleError(e)));
+  }
+
+
   //Delete a ticket
-  deleteTicket(){}
+  deleteTicket(ticket){
+    return this.http.delete(`${environment.BASEURL}/api/tickets/${ticket._id}`)
+      .pipe(map((res) => res));
+  }
 }
+
