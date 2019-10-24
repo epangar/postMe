@@ -45,8 +45,8 @@ router.delete("/:id", (req, res, next) => {
 });
 
 
-// Retrive by ListId
-router.get("/objects/:id", (req, res, next) => {
+// Retrive by TicketId
+router.get("/ticket/:id", (req, res, next) => {
   console.log(req.params.id)
   Ticket.find({listId:req.params.id})
     .then(ticket => res.status(200).json(ticket))

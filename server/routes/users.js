@@ -29,18 +29,20 @@ router.get('/:id', (req, res, next) => {
 });
 
 // Update
-/* router.put("/:id", (req, res, next) => {
-  const updates = _.pick(req.body, fields);
-  console.log(updates)
+// router.put("/:id/update", (req, res, next) => {
+//   // const updates = _.pick(req.body, fields);
+//   //console.log(updates)
 
-  User.findByIdAndUpdate(req.params.id, updates, { new: true })
-    .then(list => res.json(list))
-    .catch(e => next(e));
-}); */
+//   console.log("Entra en Update")
+
+//   User.findByIdAndUpdate(req.params.id, {$set: req.body}, { new: true })
+//     .then(list => res.json(list))
+//     .catch(e => next(e));
+// });
 
 
 // Update
-router.put('/:id', (req, res, next) => {
+router.put('/:id/edit', (req, res, next) => {
     console.log("Entra en put!!!")
     console.log(req.params.id)
     const {id} = req.params;

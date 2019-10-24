@@ -21,6 +21,7 @@ export class PersonService {
     return this.listOfPerson;
   }
   handleError(e): Observable<any> {
+    console.log(e)
     return throwError(e);
   }
   //Create person
@@ -55,10 +56,10 @@ export class PersonService {
   }
 
   //Update a person's data
-  editUser(user) : Observable<any> {
+  editUser(user)  {
     debugger
-    console.log(`${environment.BASEURL}/api/users/${user._id}`)
-    return this.http.patch(`${environment.BASEURL}/api/users/${user._id}`, user)
+    console.log(`${environment.BASEURL}/api/users/${user._id}/update`)
+    return this.http.put(`${environment.BASEURL}/api/users/${user._id}/update`, user)
       .pipe(map(user => user))
       .pipe(catchError((e: any) => this.handleError(e)));
   }
