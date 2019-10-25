@@ -60,7 +60,7 @@ export class PersonService {
     console.log(`${environment.BASEURL}/api/users/${user._id}`)
     return this.http.put(`${environment.BASEURL}/api/users/${user._id}`, user)
       .pipe(map(user => user))
-      .pipe(catchError((e: any) => this.handleError(e)));
+      //.pipe(catchError((e: any) => this.handleError(e)));
   }
 
 
