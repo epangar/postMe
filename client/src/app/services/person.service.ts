@@ -45,7 +45,7 @@ export class PersonService {
   
   //Get all the people
   getList() : Observable<Person[]> {
-    // debugger
+    
     return this.http.get<Person[]>(`${environment.BASEURL}/api/users`)
       .pipe(
         map(res => res),
@@ -82,17 +82,15 @@ export class PersonService {
   removeUser(id: string): Observable<Person[]> {
     //debugger
     var url=`${environment.BASEURL}/api/users/${id}`;
-    
+    debugger
     return this.http.delete<Person>(url, this.httpOptions).pipe(
-        map((user) => user),
+        map(user => user),
         map(() => this.getList().subscribe( r => {
-              debugger
-              console.log(r)
-              this.listOfPerson = r;
-              this.listOfPersonEventEmitter.emit(this.listOfPerson);
-            }
-          )
-        ),
+          
+          console.log(r)
+          this.listOfPerson = r;
+          this.listOfPersonEventEmitter.emit(this.listOfPerson);
+        })),
         catchError((e: any) => this.handleError(e))
       );
   }
