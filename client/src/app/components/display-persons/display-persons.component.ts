@@ -74,7 +74,11 @@ export class DisplayPersonsComponent implements OnInit {
   }
 
   editUser(user){
-    this.personService.editUser(user.id).subscribe();
+    this.personService.editUser(user._id).subscribe();
+  }
+
+  deletePerson(user) :void{
+    this.personService.removeUser(user._id).subscribe()
   }
   
 }

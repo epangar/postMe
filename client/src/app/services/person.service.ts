@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { HttpClient, HttpHeaders} from "@angular/common/http";
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, take } from 'rxjs/operators';
 import { Ticket } from '../classes/Ticket';
@@ -16,16 +16,21 @@ export class PersonService {
     this.getList().subscribe(l => this.listOfPerson = l);
   }
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   handlePerson(input: any){
     this.listOfPerson = input.map( (e: Person)=> e)
     return this.listOfPerson;
   }
+
   handleError(e): Observable<any> {
     console.log(e)
     return throwError(e);
   }
-  //Create person
 
+  //Create person
   createPerson(person: Person) {
     return this.http.post(`${environment.BASEURL}/api/users`, person)
       .pipe(map(() => {
@@ -39,34 +44,52 @@ export class PersonService {
     };
   
   //Get all the people
-
-  getList() {
-    //debugger
-    return this.http.get(`${environment.BASEURL}/api/users`)
-      .pipe(map(res => res))
-      .pipe(map(res => this.handlePerson(res)));
+  getList() : Observable<Person[]> {
+    debugger
+    return this.http.get<Person[]>(`${environment.BASEURL}/api/users`)
+      .pipe(
+        map(res => res),
+        map(res => this.handlePerson(res))
+      )
+      
   }
 
   //Get a particular person
-  getUser(user){
-    debugger
+  getUser(user) : Observable<Person[]>{
     
-    return this.http.get(`${environment.BASEURL}/api/users/${user._id}`, user)
-    .pipe(map((res) => res));
+    var url = `${environment.BASEURL}/api/users/${user._id}`;
+    
+    return this.http.get<Person[]>(url, user)
+    .pipe(
+      map((res) => res),
+      map(res => this.handlePerson(res))
+    )
+    
   }
 
   //Update a person's data
-  editUser(user)  {
-    console.log(`${environment.BASEURL}/api/users/${user._id}`)
-    return this.http.put(`${environment.BASEURL}/api/users/${user._id}`, user)
-      .pipe(map(user => user))
-      .pipe(catchError((e: any) => this.handleError(e)));
+  editUser(user: Person): Observable<any> {
+    var url=`${environment.BASEURL}/api/users/${user['_id']}`;
+    
+    return this.http.put(url, user, this.httpOptions).pipe(  
+        map(user => user),
+        catchError((e: any) => this.handleError(e))
+      );
   }
 
 
   //Delete a person
-  removeUser(user) {
-    return this.http.delete(`${environment.BASEURL}/api/users/${user._id}`)
-      .pipe(map((res) => res));
+  removeUser(id: string): Observable<Person[]> {
+    //debugger
+    var url=`${environment.BASEURL}/api/users/${id}`;
+    
+    return this.http.delete<Person>(url, this.httpOptions).pipe(
+        map((res) => {
+        console.log(this.sessionService.user._id)
+        this.getList().subscribe();
+        return res
+      }),
+        catchError((e: any) => this.handleError(e))
+      );
   }
 }
