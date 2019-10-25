@@ -24,7 +24,7 @@ export class AccessComponent implements OnInit {
 
   ngOnInit() {
     this.session.isLoggedIn()
-    console.log(this.currentUser)
+    
     if(this.currentUser){
       //debugger
       //setTimeout(()=>console.clear(), 2000)
@@ -45,6 +45,6 @@ export class AccessComponent implements OnInit {
   goToDashBoard():void{
     //debugger
     console.log(this.currentUser)
-    this.router.navigate(['/dashboard', this.currentUserId ])
+    this.router.navigate(['/dashboard'])
   }
 }

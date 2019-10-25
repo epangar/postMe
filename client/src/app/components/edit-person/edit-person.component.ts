@@ -68,10 +68,8 @@ export class EditPersonComponent implements OnInit {
   }
 
   editPerson(){
-    debugger
-    console.log()
     console.log(this.currentPerson)
-    this.personService.editUser(this.currentPerson)
+    this.personService.editUser(this.currentPerson).subscribe()
   }
 
   resetForm(myEditedPerson: NgForm){
