@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class PersonService {
-  listOfPerson: Array<Person>=[];
+  listOfPerson: Person[]=[];
   listOfPersonEventEmitter: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private http: HttpClient, public sessionService: SessionService) { 
@@ -79,18 +79,13 @@ export class PersonService {
 
 
   //Delete a person
-  removeUser(id: string): Observable<Person[]> {
-    //debugger
+  removeUser(id: string): Observable<Person[]>{
+    
     var url=`${environment.BASEURL}/api/users/${id}`;
-    debugger
-    return this.http.delete<Person>(url, this.httpOptions).pipe(
+    
+    return this.http.delete<Person>(url, this.httpOptions)
+    .pipe(
         map(user => user),
-        map(() => this.getList().subscribe( r => {
-          
-          console.log(r)
-          this.listOfPerson = r;
-          this.listOfPersonEventEmitter.emit(this.listOfPerson);
-        })),
         catchError((e: any) => this.handleError(e))
       );
   }

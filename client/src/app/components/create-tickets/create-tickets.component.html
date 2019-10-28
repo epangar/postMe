@@ -1,8 +1,22 @@
-<form class="create-tickets__form">
-        <input required class="col-md-6 create-persons__input" type="text" placeholder="search by username">  
-        <input required class="col-md-6 create-tickets__input" type="text" placeholder="userNumber">
-        <input required class="col-md-6 create-tickets__input" type="text" placeholder="name">
-        <input required class="col-md-6 create-tickets__input" type="text" placeholder="surname">
+<form class="create-tickets__form" #myNewTicket="ngForm" (submit)="createTicket(myNewTicket.value)">
+        <input disabled class="col-md-6 create-persons__input" 
+                        type="text" 
+                        placeholder="search by username">  
+        <input disabled class="col-md-6 create-tickets__input" 
+                        type="text" 
+                        placeholder="userNumber"
+                        name="userNumber"
+                        [(ngModel)] = "userNumber" >
+        <input disabled class="col-md-6 create-persons__input" 
+                        type="text"    
+                        name="name"
+                        [(ngModel)] = "name"   
+                        placeholder="name">
+        <input disabled class="col-md-6 create-persons__input" 
+                        type="text"    
+                        name="surname"
+                        [(ngModel)] = "surname"    
+                        placeholder="surname">
         <input required class="col-md-6 create-tickets__input" type="text" placeholder="business">
         <input required class="col-md-6 create-tickets__input" type="text" placeholder="country">
         <input required class="col-md-6 create-tickets__input" type="text" placeholder="city">

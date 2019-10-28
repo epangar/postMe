@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-//import { ListOfPersons } from '../../mocks/MockPersons';
+import { filter } from 'rxjs/operators';
 import { Person } from '../../classes/Person';
 import { PersonService } from '../../services/person.service';
 
@@ -31,17 +31,17 @@ export class DisplayPersonsComponent implements OnInit {
   
   constructor(private personService: PersonService) { 
     
-    this.personService.getList().subscribe(r=>{
-      this.listOfPersons=r;
-      console.log(this.listOfPersons)
-    })
+    // this.personService.getList().subscribe(r=>{
+    //   this.listOfPersons=r;
+      
+    // })
 
     this.displayEditUserData= false;
     this.dataIsShowing = false;
   }
 
   ngOnInit() {
-   
+    this.fetchAll();
   }
 
   showData(){
@@ -67,6 +67,8 @@ export class DisplayPersonsComponent implements OnInit {
     
   }
 
+
+
   editOpen(person){
     // debugger
     this.sentPerson=person;
@@ -77,8 +79,18 @@ export class DisplayPersonsComponent implements OnInit {
     this.personService.editUser(user._id).subscribe();
   }
 
-  deletePerson(user) :void{
-    this.personService.removeUser(user._id).subscribe()
+  deletePerson(user){
+    this.personService.removeUser(user._id).subscribe(()=>{
+      debugger
+      this.fetchAll();
+    })
+  }
+
+  fetchAll(){
+    this.personService.getList().subscribe(users=>{
+      this.listOfPersons=users;
+      
+    })
   }
   
 }

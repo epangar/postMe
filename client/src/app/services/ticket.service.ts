@@ -28,8 +28,8 @@ export class TicketService {
   }
 
   //Create ticket
-  createTicket(){
-    return this.http.post(`${environment.BASEURL}/api/tickets`, this.tickets)
+  createTicket(ticket: Ticket){
+    return this.http.post(`${environment.BASEURL}/api/tickets`, ticket)
       .pipe(map((res) => {
         this.getAllTickets(this.session.user._id).subscribe( r => {
           
