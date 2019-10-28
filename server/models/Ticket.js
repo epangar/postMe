@@ -23,11 +23,16 @@ const ticketSchema = new Schema(
             type: Boolean,
             default: true,
     },
-    status : {
+    currentStatus : {
         type: String,
         enum: ["CLOSED", "OPEN"],
         default: "OPEN"
       },
+    urgency : {
+      type: Number,
+      enum: [1,2,3],
+      default: 2
+    }
   },
   {
     timestamps: {

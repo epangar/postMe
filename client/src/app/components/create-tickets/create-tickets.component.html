@@ -1,32 +1,82 @@
 <form class="create-tickets__form" #myNewTicket="ngForm" (submit)="createTicket(myNewTicket.value)">
-        <input disabled class="col-md-6 create-persons__input" 
-                        type="text" 
-                        placeholder="search by username">  
-        <input disabled class="col-md-6 create-tickets__input" 
-                        type="text" 
-                        placeholder="userNumber"
-                        name="userNumber"
-                        [(ngModel)] = "userNumber" >
-        <input disabled class="col-md-6 create-persons__input" 
-                        type="text"    
-                        name="name"
-                        [(ngModel)] = "name"   
-                        placeholder="name">
-        <input disabled class="col-md-6 create-persons__input" 
-                        type="text"    
-                        name="surname"
-                        [(ngModel)] = "surname"    
-                        placeholder="surname">
-        <input required class="col-md-6 create-tickets__input" type="text" placeholder="business">
-        <input required class="col-md-6 create-tickets__input" type="text" placeholder="country">
-        <input required class="col-md-6 create-tickets__input" type="text" placeholder="city">
-        <input required class="col-md-6 create-tickets__input" type="text" placeholder="job">
-        <input required class="col-md-6 create-tickets__input" type="text" placeholder="phoneNumber">
-        <textarea></textarea>
-        
-        <div class="col-md-12">
-            <button class="col-md-4" type="button">Reset form</button>
-            <button class="col-md-4" type="button"  (click)="collapse()">Cancel</button>
-            <button class="col-md-4" type="submit">Create ticket</button>
+    <div class="row">
+        <div class="col-md-4">
+            <input disabled class="create-tickets__input" 
+                            type="text" 
+                            placeholder="name" 
+                            name="userNamer"
+                            [(ngModel)]="user.username">
+            <input disabled class="create-tickets__input" 
+                            type="text" 
+                            placeholder="userNumber" 
+                            name="userNumber"           
+                            [(ngModel)]="userNumber">
+            <input disabled class="create-tickets__input" 
+                            type="text" 
+                            name="name" 
+                            [(ngModel)]="user.name"
+                            placeholder="name">
+            <input disabled class="create-tickets__input" 
+                            type="text" 
+                            name="surname" 
+                            [(ngModel)]="user.surname"
+                            placeholder="surname">
+            <input disabled class="create-tickets__input" 
+                            type="text" 
+                            name="business" 
+                            [(ngModel)]="user.business"
+                            placeholder="business">
+            <input disabled class="create-tickets__input" 
+                            type="text" 
+                            name="country" 
+                            [(ngModel)]="user.country"
+                            placeholder="country">
+            <input disabled class="create-tickets__input" 
+                            type="text" 
+                            name="city" 
+                            [(ngModel)]="user.city"
+                            placeholder="city">
+            <input disabled class="create-tickets__input" 
+                            type="text" 
+                            name="job" 
+                            [(ngModel)]="user.job"
+                            placeholder="job">
+            <input disabled class="create-tickets__input" 
+                            type="text" 
+                            name="phoneNumber" 
+                            [(ngModel)]="user.phoneNumber"
+                            placeholder="phoneNumber">
         </div>
-    </form>
+        <div class="col-md-5">
+            <input required class="row"
+                            type="text"
+                            name="ticketTitle"
+                            [(ngModel)]="ticketTitle"
+                            placeholder="ticketTitle"
+                            >
+            <textarea required class="row"
+                            type="text"
+                            name="ticketDetails"
+                            [(ngModel)]="ticketDetails"
+                            placeholder="ticketDetails"
+                            ></textarea>
+            <select required 
+                            type="number" 
+                            name="urgency"
+                            [(ngModel)]="urgency"
+                            placeholder="urgency">
+                                <option value="1">High</option> 
+                                <option value="2" 
+                                        selected>Average</option>
+                                <option value="3">low</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+        <button class="col-md-4"type="reset" (click)="resetForm(myNewTicket)">Reset form</button>
+        <button class="col-md-4" type="button" (click)="collapse()">Cancel</button>
+        <button class="col-md-4" type="submit">Create ticket</button>
+    </div>
+</form>

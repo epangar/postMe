@@ -40,16 +40,16 @@ export class Ticket extends Person {
     }
   
   
-    ticketId: string;
-    ticketNumber: number;
+    // ticketId: string;
+    //ticketNumber: number;
     ticketTitle: string;
     ticketDetails: string;
     userId: string = this.username;
 
     open: boolean;
-    status: string;
+    currentStatus: string;
     urgency: number;
-    creationDate: Date;
+    //creationDate: Date;
     
     
 }

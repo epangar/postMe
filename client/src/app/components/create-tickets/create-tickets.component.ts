@@ -16,13 +16,15 @@ export class CreateTicketsComponent implements OnInit {
   userNumber: string;
 
   
-  name
-  surname
-  business
-  country
-  city
-  job
-  phoneNumber
+  //newTicket: Ticket;
+  ticketTitle: string;
+  ticketDetails: string;
+    
+
+  open: boolean;
+  status: string;
+  urgency: number;
+  creationDate: Date;
 
   @Input() 
   
@@ -52,7 +54,7 @@ export class CreateTicketsComponent implements OnInit {
   constructor(private ticketService: TicketService) { }
 
   ngOnInit() {
-    debugger
+    
     this.userNumber=this.user['_id'];
   }
 
@@ -61,8 +63,26 @@ export class CreateTicketsComponent implements OnInit {
     this.collapseFormEmit.emit(this.isFormOpen);
   }
 
-  createTicket(ticket: Ticket){
-    this.ticketService.createTicket(ticket).subscribe()
+  createTicket(myNewTicket: NgForm){
+    
+    Object.keys(this.user).forEach(key=>{
+      
+      if(!["password", "__v", "created_at", "updated_at", "_id"].includes(key)){
+        myNewTicket[key]=this.user[key];
+      }
+
+    })
+    myNewTicket['userId']=this.user['_id'];
+    myNewTicket['open']=true;
+    myNewTicket['currentStatus']= "OPEN";
+    myNewTicket['urgency']= this.urgency;
+
+
+    
+    debugger
+    console.log(myNewTicket)
+
+    this.ticketService.createTicket(myNewTicket).subscribe()
   }
 
   resetForm(myNewTicket: NgForm){

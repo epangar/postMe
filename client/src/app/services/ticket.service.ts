@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, take } from 'rxjs/operators';
 import { Ticket } from '../classes/Ticket';
@@ -10,13 +10,26 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class TicketService {
   user: Person;
+  myUserId: String;
   tickets: any;
+  totalTickets:number;
   listOfTicket: Ticket[];
   ticketEventEmitter: EventEmitter<any> = new EventEmitter;
+  totalTicketEventEmitter: EventEmitter<any> = new EventEmitter;
+
 
   constructor(public http: HttpClient, private session: SessionService) { 
-    this.getAllTickets().subscribe(l => this.tickets = l);
+    this.getTicketsByUserId(this.session.user._id).subscribe(l => {
+      this.myUserId=this.session.user._id;
+      this.tickets = l;
+      this.totalTickets=this.tickets.length;
+    });
+    
   }
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   handleTicket(input: any){
     this.listOfTicket = input.map( (e: Ticket)=> e)
@@ -28,10 +41,11 @@ export class TicketService {
   }
 
   //Create ticket
-  createTicket(ticket: Ticket){
+  createTicket(ticket){
+    debugger
     return this.http.post(`${environment.BASEURL}/api/tickets`, ticket)
       .pipe(map((res) => {
-        this.getAllTickets(this.session.user._id).subscribe( r => {
+        this.getTicketsByUserId(this.myUserId).subscribe( r => {
           
           this.tickets = r;
           this.ticketEventEmitter.emit(this.tickets);
@@ -40,27 +54,56 @@ export class TicketService {
   }
 
   //Get all the tickets
-  getAllTickets(id?){
-    return this.http.get(`${environment.BASEURL}/api/tickets/`)
-    .pipe(map((res) => {
-      this.ticketEventEmitter.emit(this.tickets);
-      //this.lists = res.json();
-      return res;
-    }));
+  getAllTickets() : Observable<Ticket[]> {
+    
+    return this.http.get<Ticket[]>(`${environment.BASEURL}/api/tickets`)
+      .pipe(
+        map(res => res),
+        map(res => this.handleTicket(res))
+      )
+      
   }
 
-  getMyTickets(id){
-    
+  //Get total number of tickets
+
+  // getTotalNumberOfTickets() {
+  //   return this.http.get(`${environment.BASEURL}/api/tickets/`)
+  //   .pipe(map((res) => {
+      
+  //     this.totalTicketEventEmitter.emit(this.totalTickets);
+     
+  //     return res;
+  //   }));
+  // }
+
+  //Get Tickets by a particular user
+  getTicketsByUserId(id) : Observable<Ticket[]>{
+    var url = `${environment.BASEURL}/api/object/${id}`;
+
+    return this.http.get<Ticket[]>(url)
+    .pipe(
+      map((res) => res),
+      map(res => this.handleTicket(res))
+    )
   }
+
+  
+
+  //Get All My Tickets
+  // getAllMyTickets() : Observable<Ticket[]> {
+  //   this.getTicketsByUserId(this.user['_id']).subscribe( g => {
+  //     this.tickets=g;
+  //   })
+  // }
 
   //Get a particular ticket
-  getTicket(ticket){
+  getTicketById(ticket){
     return this.http.get(`${environment.BASEURL}/api/tickets/${ticket._id}`, ticket)
     .pipe(map((res) => res));
   }
 
 
-  //Update a ticket
+  //Update a particular ticket
   updateTicket(ticket){
     return this.http.put(`${environment.BASEURL}/api/tickets/${ticket._id}`, ticket)
       .pipe(map(ticket => ticket))

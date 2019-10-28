@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ListOfTickets } from '../../mocks/MockTickets';
+// import { ListOfTickets } from '../../mocks/MockTickets';
 import { Ticket } from '../../classes/Ticket';
+import { PersonService } from '../../services/person.service';
+import { TicketService } from '../../services/ticket.service';
+
 
 
 @Component({
@@ -10,10 +13,11 @@ import { Ticket } from '../../classes/Ticket';
 })
 export class DisplayTicketsComponent implements OnInit {
 
-  listOfTickets: Ticket[] = ListOfTickets;
+  listOfTickets: Ticket[];
   whichTicketIsDisplayed: number = -1;
 
   user: any;
+  myUserId: string;
 
   @Input()
   set currentUser(input){
@@ -25,11 +29,18 @@ export class DisplayTicketsComponent implements OnInit {
     return this.user;
   }
 
-  constructor() { }
+  constructor(private ticketService: TicketService) { 
+    this.ticketService.getTicketsByUserId(this.myUserId).subscribe( q =>{
+      this.listOfTickets = q;
+    })
+  }
 
   ngOnInit() {
-    this.listOfTickets = ListOfTickets.map(ticket=>ticket)
-                                      .sort((a,b)=>b.ticketNumber-a.ticketNumber);
+    // this.listOfTickets = ListOfTickets.map(ticket=>ticket)
+    //                                   .sort((a,b)=>b.ticketNumber-a.ticketNumber);
+
+    this.myUserId=this.user._id
+    debugger
   }
   
   showTicketData(i: number){
