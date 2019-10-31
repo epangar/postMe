@@ -14,7 +14,10 @@ router.get("/", (req, res, next) => {
 
 // Create
 router.post("/", (req, res, next) => {
+  console.log("Entra en post")
   const ph = _.pick(req.body, fields);
+
+  console.log(ph)
   Ticket.create(ph)
     .then(ticket => res.json(ticket))
     .catch(e => next(e));

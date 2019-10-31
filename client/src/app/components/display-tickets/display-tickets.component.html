@@ -17,12 +17,14 @@
                 <td class="col-md-2 col-lg-2"> <button (click)="showTicketData(i)">Show</button></td>
                 <div class="col-lg-12" *ngIf="whichTicketIsDisplayed !== -1 && whichTicketIsDisplayed === i">
                     
+                    <p> {{ticket | json }}</p>
+                    
+                    <p> <b>Current Status</b>: {{ticket.currentStatus}}</p>
                     <p><b>Description:</b> {{ticket.ticketDetails}}</p>
                     <p><b>Position:</b> {{ticket.role }}, {{ticket.business}}</p>
                     <p><b>Location:</b> {{ticket.city }}, {{ticket.country}}</p>
                     <p><b>Phone: </b> {{ticket.phoneNumber}}  <b>Email:</b> {{ticket.email}} </p>
-                    <button>Create ticket</button>
-                    <button>See all tickets</button>
+                    
                     <button>Edit</button>
     
                 </div>

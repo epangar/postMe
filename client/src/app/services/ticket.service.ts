@@ -19,11 +19,14 @@ export class TicketService {
 
 
   constructor(public http: HttpClient, private session: SessionService) { 
-    this.getTicketsByUserId(this.session.user._id).subscribe(l => {
+    
+    
+    //this.getTicketsByUserId(this.session.user._id).subscribe();
+    
+    this.getAllTickets().subscribe(r => {
       this.myUserId=this.session.user._id;
-      this.tickets = l;
-      this.totalTickets=this.tickets.length;
-    });
+    })
+    
     
   }
 
@@ -31,8 +34,14 @@ export class TicketService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  handleTicket(input: any){
+  handleTicket(input: Ticket[]){
+    
     this.listOfTicket = input.map( (e: Ticket)=> e)
+    this.totalTickets = this.listOfTicket.length;
+
+    if(this.listOfTicket.length>0){
+      this.totalTicketEventEmitter.emit(this.totalTickets);
+    }
     return this.listOfTicket;
   }
 
@@ -43,19 +52,18 @@ export class TicketService {
 
   //Create ticket
   createTicket(ticket){
-    debugger
     return this.http.post(`${environment.BASEURL}/api/tickets`, ticket)
-      .pipe(map((res) => {
-        this.getTicketsByUserId(this.myUserId).subscribe( r => {
-          
+      .pipe(map(()=>{
+        this.getAllTickets().subscribe( r=> {
           this.tickets = r;
           this.ticketEventEmitter.emit(this.tickets);
-        });        
-      }));
-  }
+        });
+      }))
+  };
 
   //Get all the tickets
   getAllTickets() : Observable<Ticket[]> {
+    
     
     return this.http.get<Ticket[]>(`${environment.BASEURL}/api/tickets`)
       .pipe(
@@ -67,20 +75,11 @@ export class TicketService {
 
   //Get total number of tickets
 
-  // getTotalNumberOfTickets() {
-  //   return this.http.get(`${environment.BASEURL}/api/tickets/`)
-  //   .pipe(map((res) => {
-      
-  //     this.totalTicketEventEmitter.emit(this.totalTickets);
-     
-  //     return res;
-  //   }));
-  // }
-
+  
   //Get Tickets by a particular user
   getTicketsByUserId(id) : Observable<Ticket[]>{
     var url = `${environment.BASEURL}/api/tickets`;
-    debugger
+    
     return this.http.get<Ticket[]>(url)
     .pipe(
       filter(ticket => ticket['_id']===id),
@@ -117,6 +116,15 @@ export class TicketService {
   deleteTicket(ticket){
     return this.http.delete(`${environment.BASEURL}/api/tickets/${ticket._id}`)
       .pipe(map((res) => res));
+  }
+
+  //Add Ticket Number
+  addTicketNumber(){
+
+
+    if(this.listOfTicket.length>0){
+
+    }
   }
 }
 

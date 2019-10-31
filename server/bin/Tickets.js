@@ -15,23 +15,23 @@ Ticket.collection.drop();
 
 const tickets = [
   {
-    ticketId: "badbad333",
+    
     ticketNumber: 1,
     ticketTitle: "Prueba",
     ticketDetails: "Probando",
-    userId: "C234F",
+    userNumber: "C234F",
     open: false,
     status: "Closed",
-    urgency: 0, 
+    urgency: 1, 
     creationDate: new Date(),
     
 },
 {
-    ticketId: "ccc345dac",
+    
     ticketNumber: 2,
     ticketTitle: "Error texto",
     ticketDetails: "El texto aparece mal",
-    userId: "DDDDDF6543",
+    userNumber: "C651N",
     open: true,
     status: "Open",
     urgency: 2,
@@ -39,11 +39,11 @@ const tickets = [
     
 },
 {
-    ticketId: "BacCbadFe",
+    
     ticketNumber: 3,
     ticketTitle: "Teléfono roto",
     ticketDetails: "Recambio",
-    userId: "C234F",
+    userNumber: "C234F",
     open: true,
     status: "Open",
     urgency: 3,

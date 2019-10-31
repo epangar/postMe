@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient, HttpHeaders} from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, throwError } from 'rxjs';
-import { map, catchError, take } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { Ticket } from '../classes/Ticket';
 import { Person } from '../classes/Person';
 import { SessionService } from "./session.service";
@@ -35,8 +35,6 @@ export class PersonService {
     return this.http.post(`${environment.BASEURL}/api/users`, person)
       .pipe(map(() => {
         this.getList().subscribe( r => {
-          
-          console.log(r)
           this.listOfPerson = r;
           this.listOfPersonEventEmitter.emit(this.listOfPerson);
         });        
