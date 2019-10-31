@@ -2,12 +2,39 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ticketSchema = new Schema(
-  {
-    about: {
+  { 
+    username: {
+        type: Schema.Types.ObjectId, ref: "User" 
+      },
+    userNumber: {
+        type: Schema.Types.ObjectId, ref: "User" 
+      },
+    name: {
+        type: Schema.Types.ObjectId, ref: "User" 
+      },
+    surname: {
+        type: Schema.Types.ObjectId, ref: "User" 
+      },  
+    business: {
+      type: Schema.Types.ObjectId, ref: "User" 
+      },
+    city: {
+      type: Schema.Types.ObjectId, ref: "User" 
+      },
+    country: {
+      type: Schema.Types.ObjectId, ref: "User" 
+      },
+    phoneNumber: {
+      type: Schema.Types.ObjectId, ref: "User" 
+      },
+    email: {
+      type: Schema.Types.ObjectId, ref: "User" 
+      },
+    ticketTitle: {
         type: String,
         required: [true, "Add a motive"]
       },
-    description: {
+    ticketDetails: {
         type: String,
         required: [true, "Add a description"]
       },

@@ -40,7 +40,7 @@ export class DisplayTicketsComponent implements OnInit {
     //                                   .sort((a,b)=>b.ticketNumber-a.ticketNumber);
 
     this.myUserId=this.user._id
-    debugger
+    // debugger
   }
   
   showTicketData(i: number){

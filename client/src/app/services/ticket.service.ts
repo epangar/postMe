@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, throwError } from 'rxjs';
-import { map, catchError, take } from 'rxjs/operators';
+import { map, catchError, filter } from 'rxjs/operators';
 import { Ticket } from '../classes/Ticket';
 import { Person } from '../classes/Person';
 import { SessionService } from "./session.service";
@@ -35,6 +35,7 @@ export class TicketService {
     this.listOfTicket = input.map( (e: Ticket)=> e)
     return this.listOfTicket;
   }
+
   handleError(e): Observable<any> {
     console.log(e)
     return throwError(e);
@@ -78,10 +79,11 @@ export class TicketService {
 
   //Get Tickets by a particular user
   getTicketsByUserId(id) : Observable<Ticket[]>{
-    var url = `${environment.BASEURL}/api/object/${id}`;
-
+    var url = `${environment.BASEURL}/api/tickets`;
+    debugger
     return this.http.get<Ticket[]>(url)
     .pipe(
+      filter(ticket => ticket['_id']===id),
       map((res) => res),
       map(res => this.handleTicket(res))
     )
