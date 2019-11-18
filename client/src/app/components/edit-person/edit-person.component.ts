@@ -32,15 +32,7 @@ export class EditPersonComponent implements OnInit {
     
     this.currentPerson=sentPerson;
     // debugger
-    //this.currentPerson['role']=this.role;
-    // this.currentPerson['userNumber'] = this.userNumber;
-    // this.currentPerson['name'] = this.name;
-    // this.currentPerson['surname'] = this.surname;
-    // this.currentPerson['business'] = this.business;
-    // this.currentPerson['country'] = this.country;
-    // this.currentPerson['city'] = this.city;
-    // this.currentPerson['job'] = this.job;
-    // this.currentPerson['phoneNumber'] = this.phoneNumber;
+    
 
   }
 

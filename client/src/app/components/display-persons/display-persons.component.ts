@@ -14,8 +14,7 @@ export class DisplayPersonsComponent implements OnInit {
   whoIsDisplayed: number = -1;
   displayEditUserData: boolean;
   sentPerson:Person;
-  editedPerson: Person;
-  
+  editedPerson: Person
   user: any;
   dataIsShowing: boolean;
 

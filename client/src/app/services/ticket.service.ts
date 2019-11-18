@@ -52,6 +52,7 @@ export class TicketService {
 
   //Create ticket
   createTicket(ticket){
+    debugger
     return this.http.post(`${environment.BASEURL}/api/tickets`, ticket)
       .pipe(map(()=>{
         this.getAllTickets().subscribe( r=> {
@@ -113,10 +114,13 @@ export class TicketService {
 
 
   //Delete a ticket
-  deleteTicket(ticket){
+  deleteTicket(id: string) : Observable<Ticket[]>{
     debugger
-    return this.http.delete(`${environment.BASEURL}/api/tickets/${ticket._id}`)
-      .pipe(map((res) => res));
+    return this.http.delete<Ticket>(`${environment.BASEURL}/api/tickets/${id}`, this.httpOptions)
+    .pipe(
+      map(user => user),
+      catchError((e: any) => this.handleError(e))
+    );
   }
 
   //Add Ticket Number
@@ -126,6 +130,15 @@ export class TicketService {
     if(this.listOfTicket.length>0){
 
     }
+  }
+
+  editTicket(ticket: Ticket): Observable<any> {
+    var url=`${environment.BASEURL}/api/tickets/${ticket['_id']}`;
+    
+    return this.http.put(url, ticket, this.httpOptions).pipe(  
+        map(ticket => ticket),
+        catchError((e: any) => this.handleError(e))
+      );
   }
 }
 

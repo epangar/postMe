@@ -29,6 +29,13 @@
                     <button (click)="deleteTicket(ticket)">Delete ticket</button>
     
                 </div>
+                <div class="row">
+
+                    {{ i }}
+                    <edit-ticket *ngIf="displayEditTicketData && whichTicketIsDisplayed === i"
+                                    [receivedTicket]="sentTicket"
+                                    (dataEmitter)="editedTicket"></edit-ticket>
+                </div>
             </tr>
     
         </tbody>

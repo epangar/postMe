@@ -15,9 +15,11 @@ export class DisplayTicketsComponent implements OnInit {
 
   listOfTickets: Ticket[];
   whichTicketIsDisplayed: number = -1;
-
+  displayEditTicketData: boolean;
+  sentTicket:Ticket;
   user: any;
   myUserId: string;
+  dataIsShowing: boolean;
 
   @Input()
   set currentUser(input){
@@ -39,10 +41,16 @@ export class DisplayTicketsComponent implements OnInit {
     // this.listOfTickets = ListOfTickets.map(ticket=>ticket)
     //                                   .sort((a,b)=>b.ticketNumber-a.ticketNumber);
 
-    this.myUserId=this.user._id
+    this.myUserId=this.user._id;
+    this.fetchAll()
     // debugger
   }
   
+  showData(){
+    // debugger
+    this.dataIsShowing=!this.dataIsShowing;
+  }
+
   showTicketData(i: number){
     if(this.whichTicketIsDisplayed !==-1 ){
       this.whichTicketIsDisplayed = -1;
@@ -50,7 +58,17 @@ export class DisplayTicketsComponent implements OnInit {
       this.whichTicketIsDisplayed = i;
     }
     
+    this.displayEditTicketData=false;
+
+    this.showData();
     
+    this.sentTicket=this.listOfTickets[i];
+  }
+
+  editOpen(ticket){
+    // debugger
+    this.sentTicket=ticket;
+    this.displayEditTicketData=!this.displayEditTicketData;
   }
 
   deleteTicket(ticket){

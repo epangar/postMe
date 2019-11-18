@@ -1,1 +1,70 @@
-<p>edit-ticket works!</p>
+<form class="edit-tickets__form" #myEditedTicket=ngForm (submit)="editTicket()">
+      
+    <input required 
+            class="col-md-6 edit-tickets__input" 
+            type="text"    
+            name="username"
+            [value] = "currentTicket.username" 
+            placeholder="username">
+    <input required 
+            class="col-md-6 edit-tickets__input" 
+            type="text"    
+            name="role"
+            [value] = "currentTicket.role" 
+            placeholder="role">
+    <input required 
+            class="col-md-6 edit-tickets__input" 
+            type="text"    
+            name="userNumber"
+            [(ngModel)] = "currentTicket.userNumber" 
+            placeholder="userNumber">
+    <input required 
+            class="col-md-6 edit-tickets__input" 
+            type="text"    
+            name="name"
+            [(ngModel)] = "currentTicket.name"   
+            placeholder="name">
+    <input required 
+            class="col-md-6 edit-tickets__input" 
+            type="text"    
+            name="surname"
+            [(ngModel)] = "currentTicket.surname"    
+            placeholder="surname">
+    <input required 
+            class="col-md-6 edit-tickets__input" 
+            type="text"    
+            name="business"
+            [(ngModel)] = "currentTicket.business"   
+            placeholder="business">
+    <input required 
+            class="col-md-6 edit-tickets__input" 
+            type="text"    
+            name="country"
+            [(ngModel)] = "currentTicket.country"    
+            placeholder="country">
+    <input required 
+            class="col-md-6 edit-tickets__input" 
+            type="text"    
+            name="city"
+            [(ngModel)] = "currentTicket.city"   
+            placeholder="city">
+    <input required 
+            class="col-md-6 edit-tickets__input" 
+            type="text"    
+            name="job"
+            [(ngModel)] = "currentTicket.job"    
+            placeholder="job">
+    <input required 
+            class="col-md-6 edit-tickets__input" 
+            type="text"    
+            name="phoneNumber"
+            [(ngModel)] = "currentTicket.phoneNumber"    
+            placeholder="phoneNumber">
+    
+    
+    <div class="col-md-12">
+        <button  type="reset" (click)="resetForm(myEditedTicket)">Reset form</button>
+        <button  type="button"  (click)="collapse()">Cancel</button>
+        <button  type="submit" >Save changes</button>
+    </div>
+</form>
