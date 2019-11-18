@@ -52,4 +52,19 @@ export class DisplayTicketsComponent implements OnInit {
     
     
   }
+
+  deleteTicket(ticket){
+    debugger
+    this.ticketService.deleteTicket(ticket._id).subscribe(()=>{
+      debugger
+      this.fetchAll();
+    })
+  }
+
+  fetchAll(){
+    this.ticketService.getAllTickets().subscribe(tickets=>{
+      this.listOfTickets=tickets;
+      
+    })
+  }
 }

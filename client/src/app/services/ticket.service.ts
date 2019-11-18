@@ -114,6 +114,7 @@ export class TicketService {
 
   //Delete a ticket
   deleteTicket(ticket){
+    debugger
     return this.http.delete(`${environment.BASEURL}/api/tickets/${ticket._id}`)
       .pipe(map((res) => res));
   }

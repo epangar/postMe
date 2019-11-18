@@ -25,7 +25,8 @@
                     <p><b>Location:</b> {{ticket.city }}, {{ticket.country}}</p>
                     <p><b>Phone: </b> {{ticket.phoneNumber}}  <b>Email:</b> {{ticket.email}} </p>
                     
-                    <button>Edit</button>
+                    <button (click)="editOpen(ticket)">Edit ticket</button>
+                    <button (click)="deleteTicket(ticket)">Delete ticket</button>
     
                 </div>
             </tr>
