@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const extendSchema = require('mongoose-extend-schema');
-const User = require('./User')
+const userSchema = require('./User')
 const Schema = mongoose.Schema;
 const uuid = require('uuid');
 
-const ticketSchema = new Schema(
+/* const ticketSchema = new Schema(
   { 
     
     // username: {
@@ -66,14 +66,12 @@ const ticketSchema = new Schema(
       updatedAt: "updated_at"
     }
   }
-);
+); */
 
-/*
-const ticketSchema = extendSchema(UserSchema, {
-  phone: {type: String, required: true}
-  ticketTitle: String,
-  ticketDetails: String,
-  number: Number,
+
+const ticketSchema = extendSchema(userSchema, {
+  ticketTitle: {type: String, required: true},
+  ticketDetails: {type: String, required: true},
   open: {
             type: Boolean,
             default: true,
@@ -88,14 +86,14 @@ const ticketSchema = extendSchema(UserSchema, {
       enum: [1,2,3],
       default: 2
     },
-  {
-    timestamps: {
+  
+    /* timestamps: {
       createdAt: "created_at",
       updatedAt: "updated_at"
-    }
-  }
+    } */
+  
 });
-*/
+
 
 const Ticket = mongoose.model("Ticket", ticketSchema);
 module.exports = Ticket;
